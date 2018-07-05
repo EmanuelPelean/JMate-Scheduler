@@ -8,6 +8,8 @@ import { HeaderComponent } from './header/header.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { UserProfileDashboardComponent } from './user-profile-dashboard/user-profile-dashboard.component';
+import {FullCalendarModule} from 'ng-fullcalendar';
+import { FullCalendarComponent } from './full-calendar/full-calendar.component';
 
 @NgModule({
   declarations: [
@@ -15,12 +17,14 @@ import { UserProfileDashboardComponent } from './user-profile-dashboard/user-pro
     HeaderComponent,
     LoginComponent,
     RegisterComponent,
-    UserProfileDashboardComponent
+    UserProfileDashboardComponent,
+    FullCalendarComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    AngularFontAwesomeModule
+    AngularFontAwesomeModule,
+    FullCalendarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
