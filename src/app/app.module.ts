@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppComponent } from './app.component';
 import {FormsModule} from '@angular/forms';
 import {AngularFontAwesomeModule} from 'angular-font-awesome';
@@ -8,8 +7,15 @@ import { HeaderComponent } from './header/header.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { UserProfileDashboardComponent } from './user-profile-dashboard/user-profile-dashboard.component';
-import {FullCalendarModule} from 'ng-fullcalendar';
-import { FullCalendarComponent } from './full-calendar/full-calendar.component';
+import {FullCalendarComponent} from './full-calendar/full-calendar.component';
+import {CalendarModule} from 'angular-calendar';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+
+import 'flatpickr/dist/flatpickr.css';
+import { CommonModule } from '@angular/common';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap/modal/modal.module';
+import { FlatpickrModule } from 'angularx-flatpickr';
+
 
 @NgModule({
   declarations: [
@@ -24,7 +30,11 @@ import { FullCalendarComponent } from './full-calendar/full-calendar.component';
     BrowserModule,
     FormsModule,
     AngularFontAwesomeModule,
-    FullCalendarModule
+    BrowserAnimationsModule,
+    CalendarModule.forRoot(),
+    NgbModalModule.forRoot(),
+    FlatpickrModule.forRoot(),
+
   ],
   providers: [],
   bootstrap: [AppComponent]
