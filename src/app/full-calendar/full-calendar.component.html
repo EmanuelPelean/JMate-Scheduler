@@ -53,6 +53,11 @@
 </div>
 <br>
 <br>
+<div class="alert alert-info">
+  Click on a day on the view.
+  <strong *ngIf="clickedDate">You clicked on this day: {{ clickedDate | date:'medium' }}</strong>
+</div>
+<br>
 
 <ng-template #customCellTemplate let-day="day" let-locale="locale" >
   <div class="cal-cell-top">
@@ -68,12 +73,14 @@
     *ngSwitchCase="'month'"
     [viewDate]="viewDate"
     [events]="events"
-    [cellTemplate]="customCellTemplate">
+    [cellTemplate]="customCellTemplate"
+    (dayClicked)="clickedDate = $event.day.date">
   </mwl-calendar-month-view>
   <mwl-calendar-week-view
     *ngSwitchCase="'week'"
     [viewDate]="viewDate"
-    [events]="events">
+    [events]="events"
+    (dayHeaderClicked)="clickedDate = $event.day.date">
   </mwl-calendar-week-view>
   <mwl-calendar-day-view
     *ngSwitchCase="'day'"
@@ -89,7 +96,7 @@
       Edit events
       <button
         class="btn btn-primary pull-right"
-        (click)="addEvent()">
+        (click)="onAddEvent()">
         Add new
       </button>
       <div class="clearfix"></div>
@@ -114,26 +121,26 @@
             type="text"
             class="form-control"
             [(ngModel)]="event.title"
-            (keyup)="refresh.next()">
+            (keyup)="onRefreshEvents()">
         </td>
         <td>
           <input
             type="color"
             [(ngModel)]="event.color.primary"
-            (change)="refresh.next()">
+            (change)="onRefreshEvents()">
         </td>
         <td>
           <input
             type="color"
             [(ngModel)]="event.color.secondary"
-            (change)="refresh.next()">
+            (change)="onRefreshEvents()">
         </td>
         <td>
           <input
             class="form-control"
             type="text"
             [(ngModel)]="event.start"
-            (ngModelChange)="refresh.next()"
+            (ngModelChange)="onRefreshEvents()"
             dateFormat="Y-m-dTH:i"
             altFormat="F j, Y H:i"
             placeholder="Not set">
@@ -143,7 +150,7 @@
             class="form-control"
             type="text"
             [(ngModel)]="event.end"
-            (ngModelChange)="refresh.next()"
+            (ngModelChange)="onRefreshEvents()"
             dateFormat="Y-m-dTH:i"
             altFormat="F j, Y H:i"
             placeholder="Not set">
@@ -151,7 +158,7 @@
         <td>
           <button
             class="btn btn-danger"
-            (click)="events.splice(index, 1); refresh.next()">
+            (click)="onDeleteEvent(index); onRefreshEvents()">
             Delete
           </button>
         </td>

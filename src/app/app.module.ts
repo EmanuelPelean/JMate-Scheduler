@@ -12,9 +12,9 @@ import {CalendarModule} from 'angular-calendar';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import 'flatpickr/dist/flatpickr.css';
-import { CommonModule } from '@angular/common';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap/modal/modal.module';
 import { FlatpickrModule } from 'angularx-flatpickr';
+import {ScheduleEventsService} from './shared/services/schedule-events.service';
 
 
 @NgModule({
@@ -36,7 +36,7 @@ import { FlatpickrModule } from 'angularx-flatpickr';
     FlatpickrModule.forRoot(),
 
   ],
-  providers: [],
+  providers: [ScheduleEventsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
