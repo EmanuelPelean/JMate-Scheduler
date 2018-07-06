@@ -129,7 +129,7 @@ export class FullCalendarComponent {
                       event,
                       newStart,
                       newEnd
-                    }: CalendarEventTimesChangedEvent): void {
+                    }: CalendarEventTimesChangedEvent) {
     event.start = newStart;
     event.end = newEnd;
     this.handleEvent('Dropped or resized', event);
@@ -137,8 +137,8 @@ export class FullCalendarComponent {
   }
 
   handleEvent(action: string, event: CalendarEvent): void {
-    this.modalData = { event, action };
-    this.modal.open(this.modalContent, { size: 'lg' });
+    // this.modalData = { event, action };
+    // this.modal.open(this.modalContent, { size: 'lg' });
   }
 
   addEvent(): void {
