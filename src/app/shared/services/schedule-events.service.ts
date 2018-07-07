@@ -61,27 +61,47 @@ export class ScheduleEventsService {
     {
       start: subDays(startOfDay(new Date()), 1),
       end: addDays(new Date(), 0),
-      title: 'A 3 day event',
+      title: 'Nick (MA) ',
       color: this.colors.red,
-      actions: this.actions
+      actions: this.actions,
+      draggable: true,
+      resizable: {
+        beforeStart: true, // this allows you to configure the sides the event is resizable from
+        afterEnd: true
+      }
     },
     {
-      title: 'Deletable event',
+      title: 'Tina (MA) ',
       color: this.colors.blue,
       start: new Date(),
-      actions: this.actions
+      actions: this.actions,
+      draggable: true,
+      resizable: {
+        beforeStart: true, // this allows you to configure the sides the event is resizable from
+        afterEnd: true
+      }
     },
     {
       start: startOfDay(new Date()),
       title: 'An event with no end date',
       color: this.colors.yellow,
-      actions: this.actions
+      actions: this.actions,
+      draggable: true,
+      resizable: {
+        beforeStart: true, // this allows you to configure the sides the event is resizable from
+        afterEnd: true
+      }
     },
     {
       start: subDays(endOfMonth(new Date()), 3),
       end: addDays(endOfMonth(new Date()), 3),
       title: 'A long event that spans 2 months',
-      color: this.colors.blue
+      color: this.colors.blue,
+      draggable: true,
+      resizable: {
+        beforeStart: true, // this allows you to configure the sides the event is resizable from
+        afterEnd: true
+      }
     },
     {
       start: addHours(startOfDay(new Date()), 2),
@@ -111,7 +131,7 @@ export class ScheduleEventsService {
       resizable: {
         beforeStart: true,
         afterEnd: true
-      }
+      },
     });
     this.refreshEvents();
   }
@@ -147,7 +167,7 @@ export class ScheduleEventsService {
     event.start = newStart;
     event.end = newEnd;
     this.handleEvent('Dropped or resized', event);
-    this.scheduleChanged.next();
+    this.refreshEvents();
   }
 
   handleEvent(action: string, event: CalendarEvent): void {

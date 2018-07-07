@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import { Subscription} from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap/modal/modal.module';
-import { CalendarEvent } from 'angular-calendar';
+import {CalendarEvent, CalendarEventTimesChangedEvent} from 'angular-calendar';
 import {ScheduleEventsService} from '../shared/services/schedule-events.service';
 import index from '@angular/cli/lib/cli';
 
@@ -36,6 +36,10 @@ export class FullCalendarComponent implements OnInit, OnDestroy {
       this.events = events;
       this.viewDate = this.eServices.viewDate;
     });
+  }
+
+  onEventTimesChanged(event: CalendarEventTimesChangedEvent) {
+    this.eServices.eventTimesChanged(event);
   }
 
   onRefreshEvents() {
