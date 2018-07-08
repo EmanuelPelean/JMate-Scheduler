@@ -59,55 +59,58 @@ export class ScheduleEventsService {
 
   private scheduleEvents: CalendarEvent[] = [
     {
-      start: subDays(startOfDay(new Date()), 1),
-      end: addDays(new Date(), 0),
-      title: 'Nick (MA) ',
+      start: addHours(startOfDay(new Date()), 12),
+      end: new Date(),
+      title: 'Drake (MA)',
+      color: this.colors.yellow,
+      actions: this.actions,
+      resizable: {
+        beforeStart: true,
+        afterEnd: true
+      },
+      draggable: true
+    },
+    {
+      start: addHours(startOfDay(new Date()), 12),
+      end: new Date(),
+      title: 'Sam (MA)',
+      color: this.colors.blue,
+      actions: this.actions,
+      resizable: {
+        beforeStart: true,
+        afterEnd: true
+      },
+      draggable: true
+    },
+    {
+      start: addHours(startOfDay(new Date()), 10),
+      end: new Date(),
+      title: 'Joe (MA)',
       color: this.colors.red,
       actions: this.actions,
-      draggable: true,
       resizable: {
-        beforeStart: true, // this allows you to configure the sides the event is resizable from
+        beforeStart: true,
         afterEnd: true
-      }
+      },
+      draggable: true
     },
     {
-      title: 'Tina (MA) ',
-      color: this.colors.blue,
-      start: new Date(),
-      actions: this.actions,
-      draggable: true,
-      resizable: {
-        beforeStart: true, // this allows you to configure the sides the event is resizable from
-        afterEnd: true
-      }
-    },
-    {
-      start: startOfDay(new Date()),
-      title: 'An event with no end date',
-      color: this.colors.yellow,
-      actions: this.actions,
-      draggable: true,
-      resizable: {
-        beforeStart: true, // this allows you to configure the sides the event is resizable from
-        afterEnd: true
-      }
-    },
-    {
-      start: subDays(endOfMonth(new Date()), 3),
-      end: addDays(endOfMonth(new Date()), 3),
-      title: 'A long event that spans 2 months',
-      color: this.colors.blue,
-      draggable: true,
-      resizable: {
-        beforeStart: true, // this allows you to configure the sides the event is resizable from
-        afterEnd: true
-      }
-    },
-    {
-      start: addHours(startOfDay(new Date()), 2),
+      start: addHours(startOfDay(new Date()), 10),
       end: new Date(),
-      title: 'A draggable and resizable event',
+      title: 'Dana (MA)',
       color: this.colors.yellow,
+      actions: this.actions,
+      resizable: {
+        beforeStart: true,
+        afterEnd: true
+      },
+      draggable: true
+    },
+    {
+      start: addHours(startOfDay(new Date()), 14),
+      end: new Date(),
+      title: 'Manu (MA)',
+      color: this.colors.blue,
       actions: this.actions,
       resizable: {
         beforeStart: true,
@@ -121,7 +124,7 @@ export class ScheduleEventsService {
     return this.scheduleEvents.slice();
   }
 
-  addEvent(): void {
+  addEvent(endDate: Date): void {
     this.scheduleEvents.push({
       title: 'New event',
       start: startOfDay(new Date()),

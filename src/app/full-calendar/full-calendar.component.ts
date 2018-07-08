@@ -47,7 +47,7 @@ export class FullCalendarComponent implements OnInit, OnDestroy {
   }
 
   onAddEvent() {
-    this.eServices.addEvent();
+    this.eServices.addEvent(this.clickedDate);
   }
 
   onDeleteEvent(i: number) {
