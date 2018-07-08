@@ -1,9 +1,9 @@
 <h1>Works!</h1>
-<div class="container">
-  <div class="col-md-12">
-    <app-login></app-login>
+<div class="container" [ngSwitch]="loggedIn">
+  <div class="col-md-12" >
+    <app-login *ngSwitchCase="false"></app-login>
   </div>
   <div class="col-md-12">
-    <app-full-calendar></app-full-calendar>
+    <app-full-calendar *ngSwitchCase="true"></app-full-calendar>
   </div>
 </div>
