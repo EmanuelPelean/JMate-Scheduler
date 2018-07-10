@@ -15,6 +15,7 @@ import 'flatpickr/dist/flatpickr.css';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap/modal/modal.module';
 import { FlatpickrModule } from 'angularx-flatpickr';
 import {ScheduleEventsService} from './shared/services/schedule-events.service';
+import { CreateEventComponent } from './full-calendar/create-event/create-event.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import {ScheduleEventsService} from './shared/services/schedule-events.service';
     LoginComponent,
     RegisterComponent,
     UserProfileDashboardComponent,
-    FullCalendarComponent
+    FullCalendarComponent,
+    CreateEventComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +36,6 @@ import {ScheduleEventsService} from './shared/services/schedule-events.service';
     CalendarModule.forRoot(),
     NgbModalModule.forRoot(),
     FlatpickrModule.forRoot(),
-
   ],
   providers: [ScheduleEventsService],
   bootstrap: [AppComponent]

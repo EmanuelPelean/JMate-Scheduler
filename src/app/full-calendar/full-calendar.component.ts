@@ -4,9 +4,9 @@ import {
   ViewChild,
   TemplateRef,
   OnInit,
-  OnDestroy
+  OnDestroy, OnChanges
 } from '@angular/core';
-import { Subscription} from 'rxjs';
+import {Subject, Subscription} from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap/modal/modal.module';
 import {CalendarEvent, CalendarEventTimesChangedEvent} from 'angular-calendar';
 import {ScheduleEventsService} from '../shared/services/schedule-events.service';
@@ -38,20 +38,16 @@ export class FullCalendarComponent implements OnInit, OnDestroy {
     });
   }
 
+  onDateClicked() {
+    this.eServices.dateClicked.next(this.clickedDate);
+  }
+
+  onViewSelected() {
+    this.eServices.currentViewSelected.next(this.view);
+  }
+
   onEventTimesChanged(event: CalendarEventTimesChangedEvent) {
     this.eServices.eventTimesChanged(event);
-  }
-
-  onRefreshEvents() {
-    this.eServices.refreshEvents();
-  }
-
-  onAddEvent() {
-    this.eServices.addEvent(this.clickedDate);
-  }
-
-  onDeleteEvent(i: number) {
-    this.eServices.deleteEvent(i);
   }
 
   ngOnDestroy() {

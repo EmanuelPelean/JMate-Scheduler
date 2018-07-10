@@ -1,177 +1,106 @@
-<div class="row text-center">
-  <div class="col-md-4">
-    <div class="btn-group">
-      <div
-        class="btn btn-primary"
-        mwlCalendarPreviousView
-        [view]="view"
-        [(viewDate)]="viewDate"
-        (viewDateChange)="activeDayIsOpen = false">
-        Previous
+<div class="container">
+  <div class="col-md-8">
+    <div class="row text-center">
+      <div class="col-md-4">
+        <div class="btn-group">
+          <div
+            class="btn btn-primary"
+            mwlCalendarPreviousView
+            [view]="view"
+            [(viewDate)]="viewDate"
+            (viewDateChange)="activeDayIsOpen = false">
+            Previous
+          </div>
+          <div
+            class="btn btn-outline-secondary"
+            mwlCalendarToday
+            [(viewDate)]="viewDate">
+            Today
+          </div>
+          <div
+            class="btn btn-primary"
+            mwlCalendarNextView
+            [view]="view"
+            [(viewDate)]="viewDate"
+            (viewDateChange)="activeDayIsOpen = false">
+            Next
+          </div>
+        </div>
       </div>
-      <div
-        class="btn btn-outline-secondary"
-        mwlCalendarToday
-        [(viewDate)]="viewDate">
-        Today
+      <div class="col-md-4">
+        <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</h3>
       </div>
-      <div
-        class="btn btn-primary"
-        mwlCalendarNextView
-        [view]="view"
-        [(viewDate)]="viewDate"
-        (viewDateChange)="activeDayIsOpen = false">
-        Next
+      <div class="col-md-4">
+        <div class="btn-group">
+          <div
+            class="btn btn-primary"
+            (click)="view = 'month'; onViewSelected()"
+            [class.active]="view === 'month'">
+            Month
+          </div>
+          <div
+            class="btn btn-primary"
+            (click)="view = 'week'; onViewSelected()"
+            [class.active]="view === 'week'">
+            Week
+          </div>
+          <div
+            class="btn btn-primary"
+            (click)="view = 'day'; onViewSelected()"
+            [class.active]="view === 'day'">
+            Day
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="col-md-4">
-    <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</h3>
-  </div>
-  <div class="col-md-4">
-    <div class="btn-group">
-      <div
-        class="btn btn-primary"
-        (click)="view = 'month'"
-        [class.active]="view === 'month'">
-        Month
-      </div>
-      <div
-        class="btn btn-primary"
-        (click)="view = 'week'"
-        [class.active]="view === 'week'">
-        Week
-      </div>
-      <div
-        class="btn btn-primary"
-        (click)="view = 'day'"
-        [class.active]="view === 'day'">
-        Day
-      </div>
+    <br>
+    <br>
+    <div class="alert alert-info">
+      Click on a day on the view.
+      <strong *ngIf="clickedDate">You clicked on this day: {{ clickedDate | date:'medium' }}</strong>
     </div>
+    <br>
+
+    <ng-template #customCellTemplate let-day="day" let-locale="locale" *ngFor="let eventItem of events; let i = index">
+      <div class="cal-cell-top" >
+        <span class="cal-day-badge" *ngIf="day.badgeTotal > 0">{{ day.badgeTotal }}</span>
+        <span class="cal-day-number">{{ day.date | calendarDate:'monthViewDayNumber':locale }}</span>
+      </div>
+      <small style="margin: 5px">{{ eventItem.id }} Here</small>
+
+    </ng-template>
+
+    <div [ngSwitch]="view">
+      <mwl-calendar-month-view
+        *ngSwitchCase="'month'"
+        [viewDate]="viewDate"
+        [events]="events"
+        [cellTemplate]="customCellTemplate"
+        (dayClicked)="clickedDate = $event.day.date; onDateClicked();"
+        (eventTimesChanged)="onEventTimesChanged($event)">
+      </mwl-calendar-month-view>
+      <mwl-calendar-week-view
+        *ngSwitchCase="'week'"
+        [viewDate]="viewDate"
+        [events]="events"
+        (dayHeaderClicked)="clickedDate = $event.day.date; onDateClicked()"
+        (eventTimesChanged)="onEventTimesChanged($event)">
+      </mwl-calendar-week-view>
+      <mwl-calendar-day-view
+        *ngSwitchCase="'day'"
+        [viewDate]="viewDate"
+        [events]="events"
+        (eventTimesChanged)="onEventTimesChanged($event)">
+      </mwl-calendar-day-view>
+    </div>
+    <br><br>
   </div>
 </div>
-<br>
-<br>
-<div class="alert alert-info">
-  Click on a day on the view.
-  <strong *ngIf="clickedDate">You clicked on this day: {{ clickedDate | date:'medium' }}</strong>
-</div>
-<br>
-
-<ng-template #customCellTemplate let-day="day" let-locale="locale" *ngFor="let eventItem of events; let i = index">
-  <div class="cal-cell-top" >
-    <span class="cal-day-badge" *ngIf="day.badgeTotal > 0">{{ day.badgeTotal }}</span>
-    <span class="cal-day-number">{{ day.date | calendarDate:'monthViewDayNumber':locale }}</span>
-  </div>
-  <small style="margin: 5px">{{ eventItem.id }} Here</small>
-
-</ng-template>
-
-<div [ngSwitch]="view">
-  <mwl-calendar-month-view
-    *ngSwitchCase="'month'"
-    [viewDate]="viewDate"
-    [events]="events"
-    [cellTemplate]="customCellTemplate"
-    (dayClicked)="clickedDate = $event.day.date"
-    (eventTimesChanged)="onEventTimesChanged($event)">
-  </mwl-calendar-month-view>
-  <mwl-calendar-week-view
-    *ngSwitchCase="'week'"
-    [viewDate]="viewDate"
-    [events]="events"
-    (dayHeaderClicked)="clickedDate = $event.day.date"
-    (eventTimesChanged)="onEventTimesChanged($event)">
-  </mwl-calendar-week-view>
-  <mwl-calendar-day-view
-    *ngSwitchCase="'day'"
-    [viewDate]="viewDate"
-    [events]="events"
-    (eventTimesChanged)="onEventTimesChanged($event)">
-  </mwl-calendar-day-view>
-</div>
-<br><br>
-
-<div class="container" *ngIf="view === 'week' || view === 'day'">
-  <div class="col-md-12">
-    <h3>
-      Edit events
-      <button
-        class="btn btn-primary pull-right"
-        (click)="onAddEvent()">
-        Add new
-      </button>
-      <div class="clearfix"></div>
-    </h3>
-    <table class="table table-bordered">
-
-      <thead>
-      <tr>
-        <th>Employee</th>
-        <th>Color</th>
-        <!--<th>Secondary color</th>-->
-        <th>Date</th>
-        <th>Start</th>
-        <th>Finish</th>
-        <th>Remove</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let event of events; let index = index">
-        <td >
-          <input
-            type="text"
-            class="form-control"
-            [(ngModel)]="event.title"
-            (keyup)="onRefreshEvents()">
-        </td>
-        <td>
-          <input
-            type="color"
-            [(ngModel)]="event.color.secondary"
-            (change)="onRefreshEvents()">
-        </td>
-        <!--<td>-->
-          <!--<input-->
-            <!--type="color"-->
-            <!--[(ngModel)]="event.color.secondary"-->
-            <!--(change)="onRefreshEvents()">-->
-        <!--</td>-->
-        <td >
-          <input
-            class="form-control"
-            type="text"
-            [ngModel]="clickedDate"
-            [(ngModel)]="event.start"
-            (ngModelChange)="onRefreshEvents()"
-            dateFormat="Y-m-dTH:i"
-            altFormat="F j, Y H:i"
-            placeholder="Not set">
-        </td>
-        <!--<td >-->
-          <!--<input-->
-            <!--class="form-control"-->
-            <!--type="text"-->
-            <!--[ngModel]="clickedDate"-->
-            <!--[(ngModel)]="event.end"-->
-            <!--(ngModelChange)="onRefreshEvents()"-->
-            <!--dateFormat="Y-m-dTH:i"-->
-            <!--altFormat="F j, Y H:i"-->
-            <!--placeholder="Not set">-->
-        <!--</td>-->
-        <td>
-          <button
-            class="btn btn-danger"
-            (click)="onDeleteEvent(index); onRefreshEvents()">
-            Delete
-          </button>
-        </td>
-      </tr>
-      </tbody>
-
-    </table>
-
+<div class="container">
+  <div class="col-md-4">
+    <app-create-event></app-create-event>
   </div>
 </div>
+
+
 

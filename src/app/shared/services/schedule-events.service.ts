@@ -18,8 +18,9 @@ import {
 export class ScheduleEventsService {
 
   constructor() { }
-
+  currentViewSelected = new Subject<string>();
   scheduleChanged = new Subject<CalendarEvent[]>();
+  dateClicked = new Subject<Date>();
   viewDate: Date = new Date();
   activeDayIsOpen = true;
 
@@ -137,6 +138,10 @@ export class ScheduleEventsService {
       },
     });
     this.refreshEvents();
+  }
+
+  onNewDayClicked(selectedDate: Date) {
+    this.dateClicked.next(selectedDate);
   }
 
   deleteEvent(index: number) {
