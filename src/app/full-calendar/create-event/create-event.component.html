@@ -1,4 +1,4 @@
-<div class="container" *ngIf="view === 'week' || view === 'day'">
+<div class="container">
   <div class="col-md-12">
     <h3>
       Edit events
@@ -14,11 +14,12 @@
       <thead>
       <tr>
         <th>Employee</th>
+        <th>Service</th>
         <th>Color</th>
         <!--<th>Secondary color</th>-->
         <th>Date</th>
         <th>Start</th>
-        <th>Finish</th>
+        <th>End</th>
         <th>Remove</th>
       </tr>
       </thead>
@@ -30,6 +31,17 @@
             class="form-control"
             [(ngModel)]="event.title"
             (keyup)="onRefreshEvents()">
+        </td>
+        <td >
+          <div class="btn-group" appDropdown >
+            <button type="button" class="btn btn-primary dropdown-toggle "> Select <fa name="caret-down"></fa>
+            </button>
+            <ul class="dropdown-menu">
+              <li><a style="cursor: pointer;">MA</a> </li>
+              <li><a style="cursor: pointer;">FD</a> </li>
+              <li><a style="cursor: pointer;">CM</a> </li>
+            </ul>
+          </div>
         </td>
         <td>
           <input
@@ -47,7 +59,7 @@
           <input
             class="form-control"
             type="text"
-            [ngModel]="clickedDate"
+            [ngModel]="dateSelected"
             [(ngModel)]="event.start"
             (ngModelChange)="onRefreshEvents()"
             dateFormat="Y-m-dTH:i"
@@ -79,3 +91,4 @@
 
   </div>
 </div>
+

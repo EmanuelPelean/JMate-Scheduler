@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="col-md-8">
+  <div class="col-md-12">
     <div class="row text-center">
       <div class="col-md-4">
         <div class="btn-group">
@@ -61,12 +61,11 @@
     </div>
     <br>
 
-    <ng-template #customCellTemplate let-day="day" let-locale="locale" *ngFor="let eventItem of events; let i = index">
+    <ng-template #customCellTemplate let-day="day" let-locale="locale" >
       <div class="cal-cell-top" >
         <span class="cal-day-badge" *ngIf="day.badgeTotal > 0">{{ day.badgeTotal }}</span>
         <span class="cal-day-number">{{ day.date | calendarDate:'monthViewDayNumber':locale }}</span>
       </div>
-      <small style="margin: 5px">{{ eventItem.id }} Here</small>
 
     </ng-template>
 
@@ -98,7 +97,7 @@
 </div>
 <div class="container">
   <div class="col-md-4">
-    <app-create-event></app-create-event>
+    <app-create-event *ngIf="view === 'week' || view === 'day'"></app-create-event>
   </div>
 </div>
 

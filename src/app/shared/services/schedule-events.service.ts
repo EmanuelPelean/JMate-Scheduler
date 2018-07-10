@@ -140,10 +140,6 @@ export class ScheduleEventsService {
     this.refreshEvents();
   }
 
-  onNewDayClicked(selectedDate: Date) {
-    this.dateClicked.next(selectedDate);
-  }
-
   deleteEvent(index: number) {
     this.scheduleEvents.splice(index, 1);
     this.scheduleChanged.next();
