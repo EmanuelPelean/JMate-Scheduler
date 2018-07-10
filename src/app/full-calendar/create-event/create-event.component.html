@@ -1,13 +1,7 @@
 <div class="container">
   <div class="col-md-12">
     <h3>
-      Edit events
-      <button
-        class="btn btn-primary pull-right"
-        (click)="onAddEvent()">
-        Add new
-      </button>
-      <div class="clearfix"></div>
+      Create Shifts
     </h3>
     <table class="table table-bordered">
 
@@ -18,18 +12,17 @@
         <th>Color</th>
         <!--<th>Secondary color</th>-->
         <th>Date</th>
-        <th>Start</th>
-        <th>End</th>
-        <th>Remove</th>
+        <th>Start Time</th>
+        <th>End Time</th>
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let event of events; let index = index">
+      <tr >
         <td >
           <input
             type="text"
             class="form-control"
-            [(ngModel)]="event.title"
+            [(ngModel)]="eventTitle"
             (keyup)="onRefreshEvents()">
         </td>
         <td >
@@ -46,43 +39,37 @@
         <td>
           <input
             type="color"
-            [(ngModel)]="event.color.secondary"
+            [(ngModel)]="eventSecondaryColor"
             (change)="onRefreshEvents()">
         </td>
-        <!--<td>-->
-        <!--<input-->
-        <!--type="color"-->
-        <!--[(ngModel)]="event.color.secondary"-->
-        <!--(change)="onRefreshEvents()">-->
-        <!--</td>-->
         <td >
           <input
             class="form-control"
-            type="text"
-            [ngModel]="dateSelected"
-            [(ngModel)]="event.start"
-            (ngModelChange)="onRefreshEvents()"
-            dateFormat="Y-m-dTH:i"
-            altFormat="F j, Y H:i"
-            placeholder="Not set">
+            [owlDateTimeTrigger]="dt2"
+            [owlDateTime]="dt2">
+          <owl-date-time [pickerType]="'calendar'" #dt2></owl-date-time>
         </td>
-        <!--<td >-->
-        <!--<input-->
-        <!--class="form-control"-->
-        <!--type="text"-->
-        <!--[ngModel]="clickedDate"-->
-        <!--[(ngModel)]="event.end"-->
-        <!--(ngModelChange)="onRefreshEvents()"-->
-        <!--dateFormat="Y-m-dTH:i"-->
-        <!--altFormat="F j, Y H:i"-->
-        <!--placeholder="Not set">-->
-        <!--</td>-->
+        <td >
+          <input
+            class="form-control"
+            [owlDateTimeTrigger]="dt4"
+            [owlDateTime]="dt4">
+          <owl-date-time [pickerType]="'timer'" #dt4></owl-date-time>
+        </td>
+        <td >
+          <input
+            class="form-control"
+            [owlDateTimeTrigger]="dt3"
+            [owlDateTime]="dt3">
+          <owl-date-time [pickerType]="'timer'" #dt3></owl-date-time>
+        </td>
         <td>
           <button
-            class="btn btn-danger"
-            (click)="onDeleteEvent(index); onRefreshEvents()">
-            Delete
+            class="btn btn-primary pull-right"
+            (click)="onAddEvent()">
+            Add <i class="fa fa-plus" aria-hidden="true"></i>
           </button>
+          <div class="clearfix"></div>
         </td>
       </tr>
       </tbody>
@@ -91,4 +78,3 @@
 
   </div>
 </div>
-

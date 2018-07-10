@@ -1,9 +1,4 @@
-<div class="container">
-  <div class="col-md-12">
-    <h1>JMate Scheduler V 1.0</h1>
-  </div>
-</div>
-
+<app-header></app-header>
 <div class="container" [ngSwitch]="loggedIn">
   <div class="col-md-12" >
     <app-login *ngSwitchCase="false"></app-login>
@@ -12,3 +7,4 @@
     <app-full-calendar *ngSwitchCase="true"></app-full-calendar>
   </div>
 </div>
+

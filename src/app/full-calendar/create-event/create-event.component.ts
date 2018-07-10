@@ -4,6 +4,7 @@ import {Subscription} from 'rxjs';
 import {s} from '@angular/core/src/render3';
 import {CalendarEvent} from 'angular-calendar';
 
+
 @Component({
   selector: 'app-create-event',
   templateUrl: './create-event.component.html',
@@ -15,7 +16,11 @@ export class CreateEventComponent implements OnInit, OnDestroy {
   events: CalendarEvent[];
   eventsSub: Subscription;
   daySelectedSub: Subscription;
-  dateSelected: Date;
+  dateSelected = new Date();
+  startTime = new Date();
+  endTime = new Date();
+  eventTitle: string;
+  eventSecondaryColor: string;
 
   constructor(private eService: ScheduleEventsService) { }
 

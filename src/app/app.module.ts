@@ -17,6 +17,7 @@ import { FlatpickrModule } from 'angularx-flatpickr';
 import {ScheduleEventsService} from './shared/services/schedule-events.service';
 import { CreateEventComponent } from './full-calendar/create-event/create-event.component';
 import {DropdownDirective} from './shared/dropdown.directive';
+import {OwlDateTimeModule, OwlNativeDateTimeModule} from 'ng-pick-datetime';
 
 
 @NgModule({
@@ -32,12 +33,14 @@ import {DropdownDirective} from './shared/dropdown.directive';
   ],
   imports: [
     BrowserModule,
+    OwlDateTimeModule,
+    OwlNativeDateTimeModule,
     FormsModule,
     AngularFontAwesomeModule,
     BrowserAnimationsModule,
     CalendarModule.forRoot(),
     NgbModalModule.forRoot(),
-    FlatpickrModule.forRoot()
+    FlatpickrModule.forRoot(),
   ],
   providers: [ScheduleEventsService],
   bootstrap: [AppComponent]
