@@ -3,6 +3,8 @@ import {ScheduleEventsService} from '../../shared/services/schedule-events.servi
 import {Subscription} from 'rxjs';
 import {s} from '@angular/core/src/render3';
 import {CalendarEvent} from 'angular-calendar';
+import {EmployeesService} from '../../shared/services/employees.service';
+import {EmployeeModel} from '../../shared/models/employee.model';
 
 
 @Component({
@@ -21,10 +23,20 @@ export class CreateEventComponent implements OnInit, OnDestroy {
   endTime = new Date();
   eventTitle: string;
   eventSecondaryColor: string;
+  employeesSub: Subscription;
+  employees: EmployeeModel[];
+  selectedEmployee = 'select';
+  selectedEmployeeRoles: string[];
+  selectedRole = 'select';
 
-  constructor(private eService: ScheduleEventsService) { }
+
+
+  constructor(private eService: ScheduleEventsService,
+              private employeeService: EmployeesService) { }
+
 
   ngOnInit() {
+
     this.eService.currentViewSelected.subscribe((currentView: string) => {
       this.view = currentView;
     });
@@ -35,6 +47,22 @@ export class CreateEventComponent implements OnInit, OnDestroy {
     this.daySelectedSub = this.eService.dateClicked.subscribe((dateChosen: Date) => {
       this.dateSelected = dateChosen;
     });
+    this.employees = this.employeeService.getEmployees();
+    this.employeesSub = this.employeeService.employeesChanged.subscribe((employees: EmployeeModel[]) => {
+      this.employees = employees;
+    });
+
+  }
+
+  onSelectedRole(i: number) {
+    this.selectedRole = this.selectedEmployeeRoles[i];
+  }
+
+  onSelectedEmployee(i: number) {
+    const firstName =  this.employees[i].firstName;
+    const lastName = this.employees[i].lastName;
+    this.selectedEmployee = firstName + ' ' + lastName;
+    this.selectedEmployeeRoles = this.employees[i].roles;
 
   }
 
@@ -54,6 +82,7 @@ export class CreateEventComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
     this.eventsSub.unsubscribe();
     this.daySelectedSub.unsubscribe();
+    this.employeesSub.unsubscribe();
   }
 
 }

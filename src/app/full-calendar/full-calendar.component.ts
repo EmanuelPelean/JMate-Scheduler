@@ -11,6 +11,8 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap/modal/modal.module';
 import {CalendarEvent, CalendarEventTimesChangedEvent} from 'angular-calendar';
 import {ScheduleEventsService} from '../shared/services/schedule-events.service';
 import index from '@angular/cli/lib/cli';
+import {EmployeesService} from '../shared/services/employees.service';
+import {EmployeeModel} from '../shared/models/employee.model';
 
 @Component({
   selector: 'app-full-calendar',
@@ -26,9 +28,11 @@ export class FullCalendarComponent implements OnInit, OnDestroy {
   events: CalendarEvent[];
   subscription: Subscription;
   clickedDate: Date;
+  employees: EmployeeModel[];
 
   constructor(private modal: NgbModal,
-              private eServices: ScheduleEventsService) {}
+              private eServices: ScheduleEventsService,
+              private employeeService: EmployeesService) {}
 
   ngOnInit() {
     this.events = this.eServices.getEvents();

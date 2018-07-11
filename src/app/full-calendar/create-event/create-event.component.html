@@ -3,9 +3,9 @@
     <h3>
       Create Shifts
     </h3>
-    <table class="table table-bordered">
+    <table class="table table-bordered" >
 
-      <thead>
+      <thead >
       <tr>
         <th>Employee</th>
         <th>Service</th>
@@ -19,20 +19,23 @@
       <tbody>
       <tr >
         <td >
-          <input
-            type="text"
-            class="form-control"
-            [(ngModel)]="eventTitle"
-            (keyup)="onRefreshEvents()">
+          <div class="btn-group" appDropdown >
+            <button type="button" class="btn btn-primary dropdown-toggle "> {{ selectedEmployee }} <fa name="caret-down"></fa>
+            </button>
+            <ul class="dropdown-menu" >
+              <li *ngFor="let employee of employees; let i = index">
+                <a style="cursor: pointer;" (click)="onSelectedEmployee(i)">{{ employee.firstName + ' ' + employee.lastName }}</a> </li>
+            </ul>
+          </div>
         </td>
         <td >
           <div class="btn-group" appDropdown >
-            <button type="button" class="btn btn-primary dropdown-toggle "> Select <fa name="caret-down"></fa>
+            <button type="button" class="btn btn-primary dropdown-toggle "> {{ selectedRole }} <fa name="caret-down"></fa>
             </button>
             <ul class="dropdown-menu">
-              <li><a style="cursor: pointer;">MA</a> </li>
-              <li><a style="cursor: pointer;">FD</a> </li>
-              <li><a style="cursor: pointer;">CM</a> </li>
+              <li *ngFor="let role of selectedEmployeeRoles; let i = index">
+                <a style="cursor: pointer;" (click)="onSelectedRole(i)"> {{ role }}</a> </li>
+
             </ul>
           </div>
         </td>
@@ -47,21 +50,24 @@
             class="form-control"
             [owlDateTimeTrigger]="dt2"
             [owlDateTime]="dt2">
-          <owl-date-time [pickerType]="'calendar'" #dt2></owl-date-time>
+          <owl-date-time [pickerType]="'calendar'" #dt2
+          [(ngModel)]="dateSelected"></owl-date-time>
         </td>
         <td >
           <input
             class="form-control"
             [owlDateTimeTrigger]="dt4"
             [owlDateTime]="dt4">
-          <owl-date-time [pickerType]="'timer'" #dt4></owl-date-time>
+          <owl-date-time [pickerType]="'timer'" #dt4
+          [(ngModel)]="startTime"></owl-date-time>
         </td>
         <td >
           <input
             class="form-control"
             [owlDateTimeTrigger]="dt3"
             [owlDateTime]="dt3">
-          <owl-date-time [pickerType]="'timer'" #dt3></owl-date-time>
+          <owl-date-time [pickerType]="'timer'" #dt3
+          [(ngModel)]="endTime"></owl-date-time>
         </td>
         <td>
           <button

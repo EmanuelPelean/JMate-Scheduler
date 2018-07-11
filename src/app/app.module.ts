@@ -18,6 +18,9 @@ import {ScheduleEventsService} from './shared/services/schedule-events.service';
 import { CreateEventComponent } from './full-calendar/create-event/create-event.component';
 import {DropdownDirective} from './shared/dropdown.directive';
 import {OwlDateTimeModule, OwlNativeDateTimeModule} from 'ng-pick-datetime';
+import { AddStaffComponent } from './register/add-staff/add-staff.component';
+import {LoginService} from './shared/services/login.service';
+import {EmployeesService} from './shared/services/employees.service';
 
 
 @NgModule({
@@ -29,7 +32,8 @@ import {OwlDateTimeModule, OwlNativeDateTimeModule} from 'ng-pick-datetime';
     UserProfileDashboardComponent,
     FullCalendarComponent,
     CreateEventComponent,
-    DropdownDirective
+    DropdownDirective,
+    AddStaffComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +46,7 @@ import {OwlDateTimeModule, OwlNativeDateTimeModule} from 'ng-pick-datetime';
     NgbModalModule.forRoot(),
     FlatpickrModule.forRoot(),
   ],
-  providers: [ScheduleEventsService],
+  providers: [ScheduleEventsService, LoginService, EmployeesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
