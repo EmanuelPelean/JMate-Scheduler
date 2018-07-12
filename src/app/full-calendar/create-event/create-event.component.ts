@@ -19,15 +19,17 @@ export class CreateEventComponent implements OnInit, OnDestroy {
   eventsSub: Subscription;
   daySelectedSub: Subscription;
   dateSelected = new Date();
-  startTime = new Date();
-  endTime = new Date();
+  endDateSelected: Date;
+  startTime: Date;
+  endTime: Date;
   eventTitle: string;
-  eventSecondaryColor: string;
+  eventSecondaryColor = '#0080ff';
   employeesSub: Subscription;
   employees: EmployeeModel[];
   selectedEmployee = 'select';
   selectedEmployeeRoles: string[];
   selectedRole = 'select';
+  newColor: {'primary': string, 'secondary': string};
 
 
 
@@ -54,8 +56,10 @@ export class CreateEventComponent implements OnInit, OnDestroy {
 
   }
 
+
   onSelectedRole(i: number) {
     this.selectedRole = this.selectedEmployeeRoles[i];
+    this.eventTitle = this.selectedEmployee + '(' + this.selectedRole + ')' ;
   }
 
   onSelectedEmployee(i: number) {
@@ -70,8 +74,31 @@ export class CreateEventComponent implements OnInit, OnDestroy {
     this.eService.refreshEvents();
   }
 
-  onAddEvent() {
-    this.eService.addEvent(this.dateSelected);
+  // onAddEvent() {
+  //   this.eService.addEvent(this.dateSelected);
+  // }
+
+  onAddNewEvent() {
+    const h = this.startTime.getHours();
+    const m = this.startTime.getMinutes();
+    this.dateSelected.setHours(h);
+    this.dateSelected.setMinutes(m);
+
+    this.endDateSelected = this.dateSelected;
+    const h2 = this.endTime.getHours();
+    const m2 = this.endTime.getMinutes();
+    this.endDateSelected.setHours(h2);
+    this.endDateSelected.setMinutes(m2);
+
+    const title = this.selectedEmployee;
+
+    this.newColor = {
+      primary: '#000000',
+      secondary: this.eventSecondaryColor
+    };
+
+    this.eService.addEvent(this.dateSelected, this.endDateSelected, title, this.newColor );
+
   }
 
   onDeleteEvent(i: number) {

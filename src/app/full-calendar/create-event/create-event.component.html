@@ -4,7 +4,6 @@
       Create Shifts
     </h3>
     <table class="table table-bordered" >
-
       <thead >
       <tr>
         <th>Employee</th>
@@ -41,38 +40,38 @@
         </td>
         <td>
           <input
-            type="color"
             [(ngModel)]="eventSecondaryColor"
+            type="color"
             (change)="onRefreshEvents()">
         </td>
         <td >
           <input
+            [(ngModel)]="dateSelected"
             class="form-control"
             [owlDateTimeTrigger]="dt2"
             [owlDateTime]="dt2">
-          <owl-date-time [pickerType]="'calendar'" #dt2
-          [(ngModel)]="dateSelected"></owl-date-time>
+          <owl-date-time [pickerType]="'calendar'" #dt2></owl-date-time>
         </td>
         <td >
           <input
+            [(ngModel)]="startTime"
             class="form-control"
             [owlDateTimeTrigger]="dt4"
             [owlDateTime]="dt4">
-          <owl-date-time [pickerType]="'timer'" #dt4
-          [(ngModel)]="startTime"></owl-date-time>
+          <owl-date-time [pickerType]="'timer'" #dt4></owl-date-time>
         </td>
         <td >
           <input
+            [(ngModel)]="endTime"
             class="form-control"
             [owlDateTimeTrigger]="dt3"
             [owlDateTime]="dt3">
-          <owl-date-time [pickerType]="'timer'" #dt3
-          [(ngModel)]="endTime"></owl-date-time>
+          <owl-date-time [pickerType]="'timer'" #dt3></owl-date-time>
         </td>
         <td>
           <button
             class="btn btn-primary pull-right"
-            (click)="onAddEvent()">
+            (click)="onAddNewEvent()">
             Add <i class="fa fa-plus" aria-hidden="true"></i>
           </button>
           <div class="clearfix"></div>
@@ -84,3 +83,4 @@
 
   </div>
 </div>
+

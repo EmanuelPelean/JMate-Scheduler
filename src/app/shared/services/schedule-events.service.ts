@@ -126,19 +126,35 @@ export class ScheduleEventsService {
     return this.scheduleEvents.slice();
   }
 
-  addEvent(endDate: Date): void {
+  // addEvent(endDate: Date): void {
+  //   this.scheduleEvents.push({
+  //     title: 'New event',
+  //     start: startOfDay(new Date()),
+  //     end: endOfDay(new Date()),
+  //     color: this.colors.red,
+  //     draggable: true,
+  //     resizable: {
+  //       beforeStart: true,
+  //       afterEnd: true
+  //     },
+  //   });
+  //   this.refreshEvents();
+  // }
+
+  addEvent(start: Date, end: Date, title: string, color: {'primary': string, 'secondary': string}) {
     this.scheduleEvents.push({
-      title: 'New event',
-      start: startOfDay(new Date()),
-      end: endOfDay(new Date()),
-      color: this.colors.red,
-      draggable: true,
+      start: addHours(startOfDay(start), 2),
+      end: end,
+      title: title,
+      color: color,
+      actions: this.actions,
       resizable: {
         beforeStart: true,
         afterEnd: true
       },
+      draggable: true
     });
-    this.refreshEvents();
+    this.scheduleChanged.next(this.scheduleEvents.slice());
   }
 
   deleteEvent(index: number) {
