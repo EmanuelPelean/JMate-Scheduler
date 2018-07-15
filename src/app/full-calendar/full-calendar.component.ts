@@ -27,6 +27,7 @@ export class FullCalendarComponent implements OnInit, OnDestroy {
   viewDate: Date = new Date();
   events: CalendarEvent[];
   subscription: Subscription;
+  viewSub: Subscription;
   clickedDate: Date;
   employees: EmployeeModel[];
 
@@ -40,15 +41,18 @@ export class FullCalendarComponent implements OnInit, OnDestroy {
       this.events = events;
       this.viewDate = this.eServices.viewDate;
     });
+    this.viewSub = this.eServices.currentViewSelected.subscribe((view: string) => {
+      this.view = view;
+    });
   }
 
   onDateClicked() {
     this.eServices.dateClicked.next(this.clickedDate);
   }
 
-  onViewSelected() {
-    this.eServices.currentViewSelected.next(this.view);
-  }
+  // onViewSelected() {
+  //   this.eServices.viewSelected(this.view);
+  // }
 
   onEventTimesChanged(event: CalendarEventTimesChangedEvent) {
     this.eServices.eventTimesChanged(event);

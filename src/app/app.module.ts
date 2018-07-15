@@ -21,6 +21,7 @@ import {OwlDateTimeModule, OwlNativeDateTimeModule} from 'ng-pick-datetime';
 import { AddStaffComponent } from './register/add-staff/add-staff.component';
 import {LoginService} from './shared/services/login.service';
 import {EmployeesService} from './shared/services/employees.service';
+import { ScheduleHeaderComponent } from './full-calendar/schedule-header/schedule-header.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import {EmployeesService} from './shared/services/employees.service';
     FullCalendarComponent,
     CreateEventComponent,
     DropdownDirective,
-    AddStaffComponent
+    AddStaffComponent,
+    ScheduleHeaderComponent
   ],
   imports: [
     BrowserModule,

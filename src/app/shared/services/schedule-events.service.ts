@@ -122,6 +122,10 @@ export class ScheduleEventsService {
     }
   ];
 
+  viewSelected(view: string) {
+    this.currentViewSelected.next(view);
+  }
+
   getEvents() {
     return this.scheduleEvents.slice();
   }
@@ -154,7 +158,7 @@ export class ScheduleEventsService {
       },
       draggable: true
     });
-    this.scheduleChanged.next(this.scheduleEvents.slice());
+    this.refreshEvents();
   }
 
   deleteEvent(index: number) {
