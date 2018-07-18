@@ -25,6 +25,10 @@ export class ScheduleHeaderComponent implements OnInit, OnDestroy {
     this.sService.viewSelected(this.view);
   }
 
+  onViewDateChange() {
+    this.sService.viewDate.next(this.viewDate);
+  }
+
   ngOnDestroy() {
   }
 

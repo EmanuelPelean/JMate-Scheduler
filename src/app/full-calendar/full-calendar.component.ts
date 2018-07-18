@@ -28,8 +28,9 @@ export class FullCalendarComponent implements OnInit, OnDestroy {
   events: CalendarEvent[];
   subscription: Subscription;
   viewSub: Subscription;
-  clickedDate: Date;
+  clickedDate = new Date();
   employees: EmployeeModel[];
+  viewDateSub: Subscription;
 
   constructor(private modal: NgbModal,
               private eServices: ScheduleEventsService,
@@ -39,10 +40,12 @@ export class FullCalendarComponent implements OnInit, OnDestroy {
     this.events = this.eServices.getEvents();
     this.subscription = this.eServices.scheduleChanged.subscribe((events: CalendarEvent[]) => {
       this.events = events;
-      this.viewDate = this.eServices.viewDate;
     });
     this.viewSub = this.eServices.currentViewSelected.subscribe((view: string) => {
       this.view = view;
+    });
+    this.viewDateSub = this.eServices.viewDate.subscribe((viewDate: Date) => {
+      this.viewDate = viewDate;
     });
   }
 

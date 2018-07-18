@@ -1,7 +1,7 @@
 
     <div class="alert alert-info">
       Click on a day on the view.
-      <strong *ngIf="clickedDate">You clicked on this day: {{ clickedDate | date:'medium' }}</strong>
+      <strong *ngIf="clickedDate">You clicked on this day: {{ clickedDate | date:'fullDate' }}</strong>
     </div>
     <br>
 
@@ -22,9 +22,18 @@
         <div class="card">
           <div class="card-body">
             <ul>
-              <li>
-
-              </li>
+              <ng-container *ngFor="let event of events">
+                <li *ngIf="event.start.getDay() == clickedDate.getDay()"
+                  mwlDraggable
+                  [dropData]="{event: event}"
+                  style="position:relative; z-index: 10">
+                  <a
+                    href="javascript:;"
+                    [style.color]="event.color.primary">
+                    {{ event.title }}{{event.start.getDay()}}{{clickedDate.getDay()}}
+                  </a>
+                </li>
+              </ng-container>
             </ul>
           </div>
         </div>

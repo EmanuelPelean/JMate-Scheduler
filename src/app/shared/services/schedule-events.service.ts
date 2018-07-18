@@ -22,7 +22,7 @@ export class ScheduleEventsService {
   currentViewSelected = new Subject<string>();
   scheduleChanged = new Subject<CalendarEvent[]>();
   dateClicked = new Subject<Date>();
-  viewDate: Date = new Date();
+  viewDate = new Subject<Date>();
   activeDayIsOpen = true;
 
 
@@ -122,6 +122,10 @@ export class ScheduleEventsService {
     }
   ];
 
+  viewDateChanged(dateSelected: Date) {
+    this.viewDate.next(dateSelected);
+  }
+
   viewSelected(view: string) {
     this.currentViewSelected.next(view);
   }
@@ -166,19 +170,19 @@ export class ScheduleEventsService {
     this.scheduleChanged.next();
   }
 
-  dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
-    if (isSameMonth(date, this.viewDate)) {
-      if (
-        (isSameDay(this.viewDate, date) && this.activeDayIsOpen === true) ||
-        events.length === 0
-      ) {
-        this.activeDayIsOpen = false;
-      } else {
-        this.activeDayIsOpen = true;
-        this.viewDate = date;
-      }
-    }
-  }
+  // dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
+  //   if (isSameMonth(date, this.viewDate)) {
+  //     if (
+  //       (isSameDay(this.viewDate, date) && this.activeDayIsOpen === true) ||
+  //       events.length === 0
+  //     ) {
+  //       this.activeDayIsOpen = false;
+  //     } else {
+  //       this.activeDayIsOpen = true;
+  //       this.viewDate = date;
+  //     }
+  //   }
+  // }
 
   refreshEvents() {
     this.scheduleChanged.next(this.scheduleEvents.slice());
