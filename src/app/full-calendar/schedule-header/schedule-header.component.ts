@@ -1,11 +1,12 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnDestroy, OnInit} from '@angular/core';
 import {ScheduleEventsService} from '../../shared/services/schedule-events.service';
 import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-schedule-header',
   templateUrl: './schedule-header.component.html',
-  styleUrls: ['./schedule-header.component.css']
+  styleUrls: ['./schedule-header.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ScheduleHeaderComponent implements OnInit, OnDestroy {
 

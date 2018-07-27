@@ -24,23 +24,40 @@
         <div class="card">
           <div class="card-body">
             <ul>
-              <ng-container *ngFor="let event of events">
-                <li *ngIf="event.start.getDay() == clickedDate.getDay()">
+              <ng-container *ngFor="let event of events; let i = index">
+                <li *ngIf="event.start.getDate() == clickedDate.getDate()">
                   <table class="table table-condensed">
                     <thead>
-                    <tr>
-                      <th>Hours</th>
-                      <th>Name</th>
-                      <th>Start</th>
-                      <th>End</th>
-                    </tr>
-                    </thead>
+                  <tr>
+                    <th>Hours</th>
+                    <th>Name</th>
+                    <th>Start</th>
+                    <th>End</th>
+                  </tr>
+                  </thead>
                     <tbody>
                     <tr>
                       <td> Weekly Total: <span class="badge">25</span></td>
                       <td><i class="fa fa-user-circle" aria-hidden="true"></i> {{ event.title }}</td>
-                      <td>{{ event.start.getHours() }}</td>
-                      <td>{{ event.end.getHours() }}</td>
+                      <td>
+                        <input
+                        class="form-control col-xs-2"
+                        [(ngModel)]="event.start"
+                        [owlDateTimeTrigger]="dt4"
+                        [owlDateTime]="dt4">
+                        <owl-date-time [pickerType]="'timer'" #dt4 (afterPickerClosed)="onRefresh()"></owl-date-time>
+                      </td>
+                      <td>
+                        <input
+                        class="form-control col-xs-2"
+                        [(ngModel)]="event.end"
+                        [owlDateTimeTrigger]="dt3"
+                        [owlDateTime]="dt3">
+                        <owl-date-time [pickerType]="'timer'" #dt3 (afterPickerClosed)="onRefresh()"></owl-date-time>
+                      </td>
+                      <td>
+                        <button class="btn btn-danger" (click)="onDeleteEvent(i)">X</button>
+                      </td>
                     </tr>
                     </tbody>
                   </table>

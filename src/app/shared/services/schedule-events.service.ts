@@ -14,7 +14,7 @@ import {
 import {EmployeeModel} from '../models/employee.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ScheduleEventsService {
 
@@ -59,7 +59,7 @@ export class ScheduleEventsService {
   };
 
 
-  private scheduleEvents: CalendarEvent[] = [
+  private scheduleEvents = [
     {
       start: addHours(startOfDay(new Date()), 12),
       end: new Date(),
@@ -167,7 +167,7 @@ export class ScheduleEventsService {
 
   deleteEvent(index: number) {
     this.scheduleEvents.splice(index, 1);
-    this.scheduleChanged.next();
+    this.refreshEvents();
   }
 
   // dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {

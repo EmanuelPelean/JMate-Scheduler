@@ -1,10 +1,9 @@
 import {
   Component,
-  ChangeDetectionStrategy,
   ViewChild,
   TemplateRef,
   OnInit,
-  OnDestroy, OnChanges
+  OnDestroy
 } from '@angular/core';
 import {Subject, Subscription} from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap/modal/modal.module';
@@ -18,7 +17,6 @@ import {EmployeeModel} from '../shared/models/employee.model';
   selector: 'app-full-calendar',
   templateUrl: './full-calendar.component.html',
   styleUrls: ['./full-calendar.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FullCalendarComponent implements OnInit, OnDestroy {
   @ViewChild('modalContent') modalContent: TemplateRef<any>;
@@ -47,6 +45,10 @@ export class FullCalendarComponent implements OnInit, OnDestroy {
     this.viewDateSub = this.eServices.viewDate.subscribe((viewDate: Date) => {
       this.viewDate = viewDate;
     });
+  }
+
+  onDeleteEvent(i: number) {
+    this.eServices.deleteEvent(i);
   }
 
   onDateClicked() {
