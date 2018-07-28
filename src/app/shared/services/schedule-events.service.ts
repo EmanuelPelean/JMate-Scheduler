@@ -61,8 +61,8 @@ export class ScheduleEventsService {
 
   private scheduleEvents = [
     {
-      start: addHours(startOfDay(new Date()), 12),
-      end: new Date(),
+      start: addHours(startOfDay(new Date()), 2),
+      end: addHours(startOfDay(new Date()), 10),
       title: 'Drake (MA)',
       color: this.colors.yellow,
       actions: this.actions,
@@ -74,7 +74,7 @@ export class ScheduleEventsService {
     },
     {
       start: addHours(startOfDay(new Date()), 12),
-      end: new Date(),
+      end: addHours(startOfDay(new Date()), 18),
       title: 'Sam (MA)',
       color: this.colors.blue,
       actions: this.actions,
@@ -86,7 +86,7 @@ export class ScheduleEventsService {
     },
     {
       start: addHours(startOfDay(new Date()), 10),
-      end: new Date(),
+      end: addHours(startOfDay(new Date()), 12),
       title: 'Joe (MA)',
       color: this.colors.red,
       actions: this.actions,
@@ -98,7 +98,7 @@ export class ScheduleEventsService {
     },
     {
       start: addHours(startOfDay(new Date()), 10),
-      end: new Date(),
+      end: addHours(startOfDay(new Date()), 12),
       title: 'Dana (MA)',
       color: this.colors.yellow,
       actions: this.actions,
@@ -109,8 +109,8 @@ export class ScheduleEventsService {
       draggable: true
     },
     {
-      start: addHours(startOfDay(new Date()), 14),
-      end: new Date(),
+      start: addHours(startOfDay(new Date()), 1),
+      end: addHours(startOfDay(new Date()), 12),
       title: 'Manu (MA)',
       color: this.colors.blue,
       actions: this.actions,

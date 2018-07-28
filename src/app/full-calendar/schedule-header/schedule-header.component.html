@@ -32,19 +32,19 @@
     <div class="btn-group">
       <div
         class="btn btn-primary"
-        (click)="view = 'month'; onViewSelected()"
+        (click)="view = 'month'; onViewSelected('month')"
         [class.active]="view === 'month'">
         Month
       </div>
       <div
         class="btn btn-primary"
-        (click)="view = 'week'; onViewSelected()"
+        (click)="view = 'week'; onViewSelected('week')"
         [class.active]="view === 'week'">
         Week
       </div>
       <div
         class="btn btn-primary"
-        (click)="view = 'day'; onViewSelected()"
+        (click)="view = 'day'; onViewSelected('day')"
         [class.active]="view === 'day'">
         Day
       </div>

@@ -1,7 +1,14 @@
-ul {
+#list-edit {
   list-style-type: none;
+}
+
+.list-item-event-title {
+  width: 100%;
+  height: auto;
+  display: inline-block;
 }
 
 .badge {
   background: red;
 }
+
