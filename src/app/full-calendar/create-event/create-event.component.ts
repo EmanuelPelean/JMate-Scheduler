@@ -106,7 +106,6 @@ export class CreateEventComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
     this.eventsSub.unsubscribe();
     this.daySelectedSub.unsubscribe();
     this.employeesSub.unsubscribe();

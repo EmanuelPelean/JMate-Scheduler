@@ -26,7 +26,7 @@ export class FullCalendarComponent implements OnInit, OnDestroy {
   events: CalendarEvent[];
   subscription: Subscription;
   viewSub: Subscription;
-  clickedDate: Date;
+  clickedDate = new Date();
   employees: EmployeeModel[];
   viewDateSub: Subscription;
 
@@ -64,7 +64,7 @@ export class FullCalendarComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subscription.unsubscribe();
+    // this.subscription.unsubscribe();
   }
 
   onRefresh() {

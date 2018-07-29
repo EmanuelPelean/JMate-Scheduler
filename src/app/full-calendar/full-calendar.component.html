@@ -1,16 +1,10 @@
 
-    <div class="alert alert-info">
-      Click on a day on the view.
-      <strong *ngIf="clickedDate">You clicked on this day: {{ clickedDate | date:'fullDate' }}</strong>
-    </div>
-    <br>
-
     <ng-template #customCellTemplate let-day="day" let-locale="locale" >
       <div class="cal-cell-top" >
         <span class="cal-day-badge" *ngIf="day.badgeTotal > 0">{{ day.badgeTotal }}</span>
         <span class="cal-day-number">{{ day.date | calendarDate:'monthViewDayNumber':locale }}</span>
         <ng-container *ngFor="let event of events; let i = index">
-              <small *ngIf="event.start.getDate() == day.date.getDate()" >
+              <small *ngIf="event.start.getDate() == day.date.getDate() && event.start.getMonth() == day.date.getMonth()" >
                 <div style="display: inline-block">
                   <i class="fa fa-user-circle" aria-hidden="true"></i>
                   <span> {{ event.title }}</span>
@@ -22,57 +16,58 @@
 
     </ng-template>
 
-    <app-create-event *ngIf="view === 'week' || view === 'day'"></app-create-event>
-
-
-
     <div class="row">
       <div *ngIf="clickedDate; then thenBlock else elseBlock"></div>
       <ng-template #thenBlock>
       <div class="col-md-5">
         <div class="card">
           <div class="card-body">
-            <ul id="list-edit">
-              <ng-container *ngFor="let event of events; let i = index">
-                <li *ngIf="event.start.getDate() == clickedDate.getDate()">
-                  <table class="table table-condensed">
-                    <thead>
-                  <tr>
-                    <th>Hours</th>
-                    <th>Name</th>
-                    <th>Start</th>
-                    <th>End</th>
-                  </tr>
-                  </thead>
-                    <tbody>
-                    <tr>
-                      <td> Weekly Total: <span class="badge">25</span></td>
-                      <td><i class="fa fa-user-circle" aria-hidden="true"></i> {{ event.title }}</td>
-                      <td>
-                        <input
-                        class="form-control col-xs-2"
-                        [(ngModel)]="event.start"
-                        [owlDateTimeTrigger]="dt4"
-                        [owlDateTime]="dt4">
-                        <owl-date-time [pickerType]="'timer'" #dt4 (afterPickerClosed)="onRefresh()"></owl-date-time>
-                      </td>
-                      <td>
-                        <input
-                        class="form-control col-xs-2"
-                        [(ngModel)]="event.end"
-                        [owlDateTimeTrigger]="dt3"
-                        [owlDateTime]="dt3">
-                        <owl-date-time [pickerType]="'timer'" #dt3 (afterPickerClosed)="onRefresh()"></owl-date-time>
-                      </td>
-                      <td>
-                        <button class="btn btn-danger" (click)="onDeleteEvent(i)">X</button>
-                      </td>
-                    </tr>
-                    </tbody>
-                  </table>
-                </li>
-              </ng-container>
-            </ul>
+            <div class="alert alert-info text-center">
+              Selected date:
+              <strong *ngIf="clickedDate"> {{ clickedDate | date:'fullDate' }}</strong>
+              <ul id="list-edit">
+                <ng-container *ngFor="let event of events; let i = index">
+                  <li *ngIf="event.start.getDate() == clickedDate.getDate()">
+                    <table class="table table-condensed">
+                      <thead>
+                      <tr>
+                        <th>Hours</th>
+                        <th>Name</th>
+                        <th>Start</th>
+                        <th>End</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      <tr>
+                        <td> Weekly Total: <span class="badge">25</span></td>
+                        <td><i class="fa fa-user-circle" aria-hidden="true"></i> {{ event.title }}</td>
+                        <td>
+                          <input
+                            class="form-control col-xs-2"
+                            [(ngModel)]="event.start"
+                            [owlDateTimeTrigger]="dt4"
+                            [owlDateTime]="dt4">
+                          <owl-date-time [pickerType]="'timer'" #dt4 (afterPickerClosed)="onRefresh()"></owl-date-time>
+                        </td>
+                        <td>
+                          <input
+                            class="form-control col-xs-2"
+                            [(ngModel)]="event.end"
+                            [owlDateTimeTrigger]="dt3"
+                            [owlDateTime]="dt3">
+                          <owl-date-time [pickerType]="'timer'" #dt3 (afterPickerClosed)="onRefresh()"></owl-date-time>
+                        </td>
+                        <td>
+                          <button class="btn btn-danger" (click)="onDeleteEvent(i)">X</button>
+                        </td>
+                      </tr>
+                      </tbody>
+                    </table>
+                  </li>
+                </ng-container>
+              </ul>
+            </div>
+
           </div>
         </div>
       </div>
@@ -84,7 +79,7 @@
             <div class="card-body">
               <ul>
                   <li>
-                    <h3>Please click on a specific date to edit shifts.</h3>
+                    <h3>No date selected.</h3>
                   </li>
               </ul>
             </div>
@@ -120,6 +115,7 @@
         </div>
       </div>
 
+      <app-create-event *ngIf="view === 'week' || view === 'day'"></app-create-event>
     </div>
 
 
