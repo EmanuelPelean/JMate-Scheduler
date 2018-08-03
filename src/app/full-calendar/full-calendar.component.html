@@ -1,19 +1,18 @@
 
+
     <ng-template #customCellTemplate let-day="day" let-locale="locale" >
       <div class="cal-cell-top" >
         <span class="cal-day-badge" *ngIf="day.badgeTotal > 0">{{ day.badgeTotal }}</span>
         <span class="cal-day-number">{{ day.date | calendarDate:'monthViewDayNumber':locale }}</span>
         <ng-container *ngFor="let event of events; let i = index">
               <small *ngIf="event.start.getDate() == day.date.getDate() && event.start.getMonth() == day.date.getMonth()" >
-                <div style="display: inline-block">
+                <div style="display: inline-block; margin-left: 2px" (click)="onEventModal(event)">
                   <i class="fa fa-user-circle" aria-hidden="true"></i>
                   <span> {{ event.title }}</span>
                 </div>
               </small>
         </ng-container>
-
       </div>
-
     </ng-template>
 
     <div class="row">
@@ -110,6 +109,8 @@
             *ngSwitchCase="'day'"
             [viewDate]="viewDate"
             [events]="events"
+            [dayStartHour]="6"
+            [dayEndHour]="22"
             (eventTimesChanged)="onEventTimesChanged($event)">
           </mwl-calendar-day-view>
         </div>

@@ -36,7 +36,7 @@ import {NgbAccordion, NgbAccordionModule} from '@ng-bootstrap/ng-bootstrap';
     CreateEventComponent,
     DropdownDirective,
     AddStaffComponent,
-    ScheduleHeaderComponent
+    ScheduleHeaderComponent,
   ],
   imports: [
     BrowserModule,

@@ -19,7 +19,6 @@ import {EmployeeModel} from '../shared/models/employee.model';
   styleUrls: ['./full-calendar.component.css'],
 })
 export class FullCalendarComponent implements OnInit, OnDestroy {
-  @ViewChild('modalContent') modalContent: TemplateRef<any>;
 
   view = 'month';
   viewDate: Date = new Date();
@@ -29,6 +28,8 @@ export class FullCalendarComponent implements OnInit, OnDestroy {
   clickedDate = new Date();
   employees: EmployeeModel[];
   viewDateSub: Subscription;
+
+
 
   constructor(private modal: NgbModal,
               private eServices: ScheduleEventsService,
@@ -70,5 +71,10 @@ export class FullCalendarComponent implements OnInit, OnDestroy {
   onRefresh() {
     this.eServices.refreshEvents();
   }
+
+  onEventModal(event: CalendarEvent): void {
+    alert(event.title);
+  }
+
 
 }
