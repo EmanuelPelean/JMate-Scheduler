@@ -32,6 +32,7 @@
     "hoek": "^5.0.3",
     "ng-bootstrap": "^1.6.3",
     "ng-pick-datetime": "^6.0.10",
+    "ng-sidebar": "^8.0.0",
     "npm-check-updates": "^2.14.2",
     "rxjs": "^6.0.0",
     "zone.js": "^0.8.26"

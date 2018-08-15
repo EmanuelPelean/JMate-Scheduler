@@ -23,6 +23,7 @@ import {LoginService} from './shared/services/login.service';
 import {EmployeesService} from './shared/services/employees.service';
 import { ScheduleHeaderComponent } from './full-calendar/schedule-header/schedule-header.component';
 import {NgbAccordion, NgbAccordionModule} from '@ng-bootstrap/ng-bootstrap';
+import {SidebarModule} from 'ng-sidebar';
 
 
 @NgModule({
@@ -48,7 +49,8 @@ import {NgbAccordion, NgbAccordionModule} from '@ng-bootstrap/ng-bootstrap';
     CalendarModule.forRoot(),
     NgbModalModule.forRoot(),
     FlatpickrModule.forRoot(),
-    NgbAccordionModule
+    NgbAccordionModule,
+    SidebarModule.forRoot()
   ],
   providers: [ScheduleEventsService, LoginService, EmployeesService],
   bootstrap: [AppComponent]

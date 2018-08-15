@@ -14,6 +14,7 @@ export class AppComponent implements OnInit, OnDestroy {
   events = [];
   subscription: Subscription;
   loggedIn = false;
+  _opened = false;
 
   constructor(private loginService: LoginService) {
   }
@@ -22,6 +23,10 @@ export class AppComponent implements OnInit, OnDestroy {
     this.subscription = this.loginService.loggedIn.subscribe((loggedInStatus: boolean) => {
       this.loggedIn = loggedInStatus;
     });
+  }
+
+  private _toggleSidebar() {
+    this._opened = !this._opened;
   }
 
   ngOnDestroy() {
