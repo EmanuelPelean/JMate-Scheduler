@@ -24,6 +24,7 @@ import {EmployeesService} from './shared/services/employees.service';
 import { ScheduleHeaderComponent } from './full-calendar/schedule-header/schedule-header.component';
 import {NgbAccordion, NgbAccordionModule} from '@ng-bootstrap/ng-bootstrap';
 import {SidebarModule} from 'ng-sidebar';
+import { NavBarSideComponent } from './nav-bar-side/nav-bar-side.component';
 
 
 @NgModule({
@@ -38,6 +39,7 @@ import {SidebarModule} from 'ng-sidebar';
     DropdownDirective,
     AddStaffComponent,
     ScheduleHeaderComponent,
+    NavBarSideComponent,
   ],
   imports: [
     BrowserModule,
