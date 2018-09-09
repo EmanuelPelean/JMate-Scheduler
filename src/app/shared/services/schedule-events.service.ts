@@ -151,7 +151,8 @@ export class ScheduleEventsService {
 
   addEvent(start: Date, end: Date, title: string, color: {'primary': string, 'secondary': string}) {
     this.scheduleEvents.push({
-      start: addHours(startOfDay(start), start.getHours()),
+      start: start,
+        // addHours(startOfDay(start), start.getHours()),
       end: end,
       title: title,
       color: color,

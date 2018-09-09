@@ -8,7 +8,14 @@
   display: inline-block;
 }
 
+.list-group-item-edit {
+  width: 100%;
+  height: auto;
+  display: inline-block;
+}
+
 .badge {
   background: red;
+  color: white;
 }
 

@@ -18,62 +18,42 @@
     <div class="row">
       <div *ngIf="clickedDate; then thenBlock else elseBlock"></div>
       <ng-template #thenBlock>
-      <div class="col-md-5">
-        <div class="card">
+      <div class="col-md-3">
+        <div class="card border-secondary mb-3">
           <div class="card-body">
             <div class="alert alert-info text-center">
-              Selected date:
               <strong *ngIf="clickedDate"> {{ clickedDate | date:'fullDate' }}</strong>
+            </div>
               <ul id="list-edit">
                 <ng-container *ngFor="let event of events; let i = index">
-                  <li *ngIf="event.start.getDate() == clickedDate.getDate()">
-                    <table class="table table-condensed">
-                      <thead>
-                      <tr>
-                        <th>Hours</th>
-                        <th>Name</th>
-                        <th>Start</th>
-                        <th>End</th>
-                      </tr>
-                      </thead>
-                      <tbody>
-                      <tr>
-                        <td> Weekly Total: <span class="badge">25</span></td>
-                        <td><i class="fa fa-user-circle" aria-hidden="true"></i> {{ event.title }}</td>
-                        <td>
-                          <input
-                            class="form-control col-xs-2"
-                            [(ngModel)]="event.start"
-                            [owlDateTimeTrigger]="dt4"
-                            [owlDateTime]="dt4">
-                          <owl-date-time [pickerType]="'timer'" #dt4 (afterPickerClosed)="onRefresh()"></owl-date-time>
-                        </td>
-                        <td>
-                          <input
-                            class="form-control col-xs-2"
-                            [(ngModel)]="event.end"
-                            [owlDateTimeTrigger]="dt3"
-                            [owlDateTime]="dt3">
-                          <owl-date-time [pickerType]="'timer'" #dt3 (afterPickerClosed)="onRefresh()"></owl-date-time>
-                        </td>
-                        <td>
-                          <button class="btn btn-danger" (click)="onDeleteEvent(i)">X</button>
-                        </td>
-                      </tr>
-                      </tbody>
-                    </table>
+                  <li class="list-group-item-edit" *ngIf="event.start.getDate() == clickedDate.getDate()">
+                    <small>
+                      <span class="badge rounded-circle">25</span>
+                      <span class="col-sm-4">{{ event.title }}</span>
+                      <input
+                        class="form-control col-sm-6"
+                        [(ngModel)]="event.start"
+                        [owlDateTimeTrigger]="dt4"
+                        [owlDateTime]="dt4">
+                      <owl-date-time [pickerType]="'timer'" #dt4 (afterPickerClosed)="onRefresh()"></owl-date-time>
+                      <input
+                        class="form-control col-sm-6"
+                        [(ngModel)]="event.end"
+                        [owlDateTimeTrigger]="dt3"
+                        [owlDateTime]="dt3">
+                      <owl-date-time [pickerType]="'timer'" #dt3 (afterPickerClosed)="onRefresh()"></owl-date-time>
+                    </small>
+                    <button class="btn btn-danger" (click)="onDeleteEvent(i)">X</button>
                   </li>
                 </ng-container>
               </ul>
-            </div>
-
           </div>
         </div>
       </div>
       </ng-template>
 
       <ng-template #elseBlock>
-        <div class="col-md-5">
+        <div class="col-md-3">
           <div class="card">
             <div class="card-body">
               <ul>
@@ -86,35 +66,39 @@
         </div>
       </ng-template>
 
-      <div class="col-md-7">
-        <app-schedule-header></app-schedule-header>
+      <div class="col-md-9">
+        <div class="card border-secondary mb-3">
+          <div class="card-body">
+            <app-schedule-header></app-schedule-header>
 
-        <div [ngSwitch]="view">
-          <mwl-calendar-month-view
-            *ngSwitchCase="'month'"
-            [viewDate]="viewDate"
-            [events]="events"
-            [cellTemplate]="customCellTemplate"
-            (dayClicked)="clickedDate = $event.day.date; onDateClicked();"
-            (eventTimesChanged)="onEventTimesChanged($event)">
-          </mwl-calendar-month-view>
-          <mwl-calendar-week-view
-            *ngSwitchCase="'week'"
-            [viewDate]="viewDate"
-            [events]="events"
-            (dayHeaderClicked)="clickedDate = $event.day.date; onDateClicked()"
-            (eventTimesChanged)="onEventTimesChanged($event)">
-          </mwl-calendar-week-view>
-          <mwl-calendar-day-view
-            *ngSwitchCase="'day'"
-            [viewDate]="viewDate"
-            [events]="events"
-            [dayStartHour]="6"
-            [dayEndHour]="22"
-            (eventTimesChanged)="onEventTimesChanged($event)">
-          </mwl-calendar-day-view>
+            <div [ngSwitch]="view">
+              <mwl-calendar-month-view
+                *ngSwitchCase="'month'"
+                [viewDate]="viewDate"
+                [events]="events"
+                [cellTemplate]="customCellTemplate"
+                (dayClicked)="clickedDate = $event.day.date; onDateClicked();"
+                (eventTimesChanged)="onEventTimesChanged($event)">
+              </mwl-calendar-month-view>
+              <mwl-calendar-week-view
+                *ngSwitchCase="'week'"
+                [viewDate]="viewDate"
+                [events]="events"
+                (dayHeaderClicked)="clickedDate = $event.day.date; onDateClicked()"
+                (eventTimesChanged)="onEventTimesChanged($event)">
+              </mwl-calendar-week-view>
+              <mwl-calendar-day-view
+                *ngSwitchCase="'day'"
+                [viewDate]="viewDate"
+                [events]="events"
+                [dayStartHour]="6"
+                [dayEndHour]="22"
+                (eventTimesChanged)="onEventTimesChanged($event)">
+              </mwl-calendar-day-view>
+            </div>
+            </div>
+          </div>
         </div>
-      </div>
 
       <app-create-event *ngIf="view === 'week' || view === 'day'"></app-create-event>
     </div>

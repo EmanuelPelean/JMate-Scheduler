@@ -74,31 +74,24 @@ export class CreateEventComponent implements OnInit, OnDestroy {
     this.eService.refreshEvents();
   }
 
-  // onAddEvent() {
-  //   this.eService.addEvent(this.dateSelected);
-  // }
-
   onAddNewEvent() {
-    const h = this.startTime.getHours();
-    const m = this.startTime.getMinutes();
-    this.dateSelected.setHours(h);
-    this.dateSelected.setMinutes(m);
 
-    this.endDateSelected = this.dateSelected;
-    const h2 = this.endTime.getHours();
-    const m2 = this.endTime.getMinutes();
-    this.endDateSelected.setHours(h2);
-    this.endDateSelected.setMinutes(m2);
+    this.endDateSelected = new Date();
+    this.dateSelected.setHours(this.startTime.getHours());
+    this.dateSelected.setMinutes(this.startTime.getMinutes());
+
+    this.endDateSelected.setDate(this.dateSelected.getDate());
+    this.endDateSelected.setHours(this.endTime.getHours());
+    this.endDateSelected.setMinutes(this.endTime.getMinutes());
 
     const title = this.selectedEmployee;
 
     this.newColor = {
-      primary: '#000000',
+      primary: '#e8e8e8',
       secondary: this.eventSecondaryColor
     };
 
     this.eService.addEvent(this.dateSelected, this.endDateSelected, title, this.newColor );
-
   }
 
   onDeleteEvent(i: number) {

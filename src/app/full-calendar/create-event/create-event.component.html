@@ -1,8 +1,9 @@
 <div class="container">
   <div class="col-md-12">
     <h3>
-      Create Shifts
+      Create Shifts | Start: {{ startTime }} | End: {{ endTime }} | StartHours: {{ startHours }} | EndHours: {{ endHours }} | StartTimeVal: {{ startTime}} & Mins: {{ startMins }}| EndTimeVal: {{ endTime }}
     </h3>
+    <button class="btn btn-primary" (click)="checkHours()">Check Hours</button>
     <table class="table table-bordered" >
       <thead >
       <tr>

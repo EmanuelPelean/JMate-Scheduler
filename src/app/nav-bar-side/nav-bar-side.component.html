@@ -1,25 +1,17 @@
-<!-- Container for sidebar(s) + page content -->
-<ng-sidebar-container style="height: 100vh;">
-  <!-- A sidebar -->
-  <ng-sidebar [(opened)]="_opened">
-    <p>Sidebar contents</p>
-    <ul class="nav flex-column">
-      <li class="nav-item">
-        <a class="nav-link active" href="#">Active</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#">Disabled</a>
-      </li>
-    </ul>
-  </ng-sidebar>
-
-</ng-sidebar-container>
-
-
-<button class="btn btn-primary" (click)="_toggleSidebar()">Here</button>
+<ng-sidebar [(opened)]="_opened" position="left">
+  <p>Sidebar contents</p>
+  <ul class="nav flex-column">
+    <li class="nav-item">
+      <a class="nav-link active" href="#">Active</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Link</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Link</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link disabled" href="#">Disabled</a>
+    </li>
+  </ul>
+</ng-sidebar>
