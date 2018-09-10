@@ -61,11 +61,14 @@ export class ScheduleEventsService {
 
   private scheduleEvents = [
     {
-      start: addHours(startOfDay(new Date()), 2),
+      start: addHours(startOfDay(new Date()), 8),
       end: addHours(startOfDay(new Date()), 10),
       title: 'Drake (MA)',
       color: this.colors.yellow,
       actions: this.actions,
+      meta: {
+        id: 1
+      },
       resizable: {
         beforeStart: true,
         afterEnd: true
@@ -78,6 +81,9 @@ export class ScheduleEventsService {
       title: 'Sam (MA)',
       color: this.colors.blue,
       actions: this.actions,
+      meta: {
+        id: 2
+      },
       resizable: {
         beforeStart: true,
         afterEnd: true
@@ -90,6 +96,9 @@ export class ScheduleEventsService {
       title: 'Joe (MA)',
       color: this.colors.red,
       actions: this.actions,
+      meta: {
+        id: 3
+      },
       resizable: {
         beforeStart: true,
         afterEnd: true
@@ -102,6 +111,9 @@ export class ScheduleEventsService {
       title: 'Dana (MA)',
       color: this.colors.yellow,
       actions: this.actions,
+      meta: {
+        id: 4
+      },
       resizable: {
         beforeStart: true,
         afterEnd: true
@@ -109,11 +121,14 @@ export class ScheduleEventsService {
       draggable: true
     },
     {
-      start: addHours(startOfDay(new Date()), 1),
+      start: addHours(startOfDay(new Date()), 9),
       end: addHours(startOfDay(new Date()), 12),
       title: 'Manu (MA)',
       color: this.colors.blue,
       actions: this.actions,
+      meta: {
+        id: 5
+      },
       resizable: {
         beforeStart: true,
         afterEnd: true
@@ -149,14 +164,16 @@ export class ScheduleEventsService {
   //   this.refreshEvents();
   // }
 
-  addEvent(start: Date, end: Date, title: string, color: {'primary': string, 'secondary': string}) {
+  addEvent(start: Date, end: Date, title: string, role: string, color: {'primary': string, 'secondary': string}, id: number) {
     this.scheduleEvents.push({
       start: start,
-        // addHours(startOfDay(start), start.getHours()),
       end: end,
-      title: title,
+      title: (title + ' (' + role + ')'),
       color: color,
       actions: this.actions,
+      meta: {
+        id: id,
+      },
       resizable: {
         beforeStart: true,
         afterEnd: true

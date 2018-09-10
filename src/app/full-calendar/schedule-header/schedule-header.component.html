@@ -12,7 +12,8 @@
       <div
         class="btn btn-outline-secondary"
         mwlCalendarToday
-        [(viewDate)]="viewDate">
+        [(viewDate)]="viewDate"
+        (viewDateChange)="activeDayIsOpen = false; onViewDateChange()">
         Today
       </div>
       <div

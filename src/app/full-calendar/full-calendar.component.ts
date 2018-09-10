@@ -28,7 +28,10 @@ export class FullCalendarComponent implements OnInit, OnDestroy {
   clickedDate = new Date();
   employees: EmployeeModel[];
   viewDateSub: Subscription;
-
+  popoverTitle = 'Delete Shift';
+  popoverMessage = 'Are you sure you want to delete this shift?';
+  confirmClicked = false;
+  cancelClicked = false;
 
 
   constructor(private modal: NgbModal,

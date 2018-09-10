@@ -30,6 +30,11 @@ export class CreateEventComponent implements OnInit, OnDestroy {
   selectedEmployeeRoles: string[];
   selectedRole = 'select';
   newColor: {'primary': string, 'secondary': string};
+  displayEmployeDD = false;
+  displayRoleDD = false;
+  roleSelection = 'Type';
+  employeeSelection = 'Employee';
+
 
 
 
@@ -70,6 +75,16 @@ export class CreateEventComponent implements OnInit, OnDestroy {
 
   }
 
+  toggleEmployeDD(event: Event) {
+    this.displayEmployeDD = !this.displayEmployeDD;
+    this.employeeSelection = (<HTMLInputElement>event.target).innerText;
+  }
+
+  toggleRoleDD(event: Event) {
+    this.displayRoleDD = !this.displayRoleDD;
+    this.roleSelection = (<HTMLInputElement>event.target).innerText;
+  }
+
   onRefreshEvents() {
     this.eService.refreshEvents();
   }
@@ -84,14 +99,14 @@ export class CreateEventComponent implements OnInit, OnDestroy {
     this.endDateSelected.setHours(this.endTime.getHours());
     this.endDateSelected.setMinutes(this.endTime.getMinutes());
 
-    const title = this.selectedEmployee;
+    const num = Math.floor(100000 + Math.random() * 900000);
 
     this.newColor = {
-      primary: '#e8e8e8',
+      primary: '#2fe8da',
       secondary: this.eventSecondaryColor
     };
 
-    this.eService.addEvent(this.dateSelected, this.endDateSelected, title, this.newColor );
+    this.eService.addEvent(this.dateSelected, this.endDateSelected, this.employeeSelection, this.roleSelection, this.newColor, num);
   }
 
   onDeleteEvent(i: number) {

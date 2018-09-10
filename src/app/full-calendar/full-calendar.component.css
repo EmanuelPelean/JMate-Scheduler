@@ -1,15 +1,14 @@
 #list-edit {
   list-style-type: none;
+  padding-left: 0pt;
 }
 
 .list-item-event-title {
-  width: 100%;
   height: auto;
   display: inline-block;
 }
 
 .list-group-item-edit {
-  width: 100%;
   height: auto;
   display: inline-block;
 }

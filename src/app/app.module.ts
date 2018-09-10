@@ -25,6 +25,8 @@ import { ScheduleHeaderComponent } from './full-calendar/schedule-header/schedul
 import {NgbAccordion, NgbAccordionModule} from '@ng-bootstrap/ng-bootstrap';
 import {SidebarModule} from 'ng-sidebar';
 import { NavBarSideComponent } from './nav-bar-side/nav-bar-side.component';
+import {ContextMenuModule} from 'ngx-contextmenu';
+import {ConfirmationPopoverModule} from 'angular-confirmation-popover';
 
 
 @NgModule({
@@ -52,7 +54,11 @@ import { NavBarSideComponent } from './nav-bar-side/nav-bar-side.component';
     NgbModalModule.forRoot(),
     FlatpickrModule.forRoot(),
     NgbAccordionModule,
-    SidebarModule.forRoot()
+    SidebarModule.forRoot(),
+    ContextMenuModule.forRoot({
+      useBootstrap4: true,
+    }),
+    ConfirmationPopoverModule.forRoot()
   ],
   providers: [ScheduleEventsService, LoginService, EmployeesService],
   bootstrap: [AppComponent]

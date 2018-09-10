@@ -1,7 +1,7 @@
 <div class="container">
   <div class="col-md-12">
     <h3>
-      Create Shifts
+      New Shift
     </h3>
     <table class="table table-bordered" >
       <thead >
@@ -17,25 +17,29 @@
       </thead>
       <tbody>
       <tr >
-        <td >
-          <div class="btn-group" appDropdown >
-            <button type="button" class="btn btn-primary dropdown-toggle "> {{ selectedEmployee }} <fa name="caret-down"></fa>
+        <td>
+          <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" (click)="toggleEmployeDD($event)" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              {{ employeeSelection }}
             </button>
-            <ul class="dropdown-menu" >
-              <li *ngFor="let employee of employees; let i = index">
-                <a style="cursor: pointer;" (click)="onSelectedEmployee(i)">{{ employee.firstName + ' ' + employee.lastName }}</a> </li>
-            </ul>
+            <div class="dropdown-menu" [class.show]="displayEmployeDD" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" href="#" (click)="toggleEmployeDD($event)">Emanuel</a>
+              <a class="dropdown-item" href="#" (click)="toggleEmployeDD($event)">Fadi</a>
+              <a class="dropdown-item" href="#" (click)="toggleEmployeDD($event)">Nadia</a>
+            </div>
           </div>
         </td>
         <td >
-          <div class="btn-group" appDropdown >
-            <button type="button" class="btn btn-primary dropdown-toggle "> {{ selectedRole }} <fa name="caret-down"></fa>
+          <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" (click)="toggleRoleDD($event)" type="button" id="dropdownRoleButton"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              {{ roleSelection }}
             </button>
-            <ul class="dropdown-menu">
-              <li *ngFor="let role of selectedEmployeeRoles; let i = index">
-                <a style="cursor: pointer;" (click)="onSelectedRole(i)"> {{ role }}</a> </li>
-
-            </ul>
+            <div class="dropdown-menu" [class.show]="displayRoleDD" aria-labelledby="dropdownRoleButton">
+              <a class="dropdown-item" href="#" (click)="toggleRoleDD($event)">MA</a>
+              <a class="dropdown-item" href="#" (click)="toggleRoleDD($event)">FD</a>
+              <a class="dropdown-item" href="#" (click)="toggleRoleDD($event)">DR</a>
+            </div>
           </div>
         </td>
         <td>

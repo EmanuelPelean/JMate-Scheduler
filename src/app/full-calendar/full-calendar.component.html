@@ -1,14 +1,19 @@
 
+<context-menu #basicMenu >
+  <ng-template contextMenuItem>
+      Add Alert
+  </ng-template>
+</context-menu>
 
     <ng-template #customCellTemplate let-day="day" let-locale="locale" >
-      <div class="cal-cell-top" >
+      <div class="cal-cell-top" [contextMenu]="basicMenu">
         <span class="cal-day-badge" *ngIf="day.badgeTotal > 0">{{ day.badgeTotal }}</span>
         <span class="cal-day-number">{{ day.date | calendarDate:'monthViewDayNumber':locale }}</span>
         <ng-container *ngFor="let event of events; let i = index">
               <small *ngIf="event.start.getDate() == day.date.getDate() && event.start.getMonth() == day.date.getMonth()" >
                 <div style="display: inline-block; margin-left: 2px" (click)="onEventModal(event)">
                   <i class="fa fa-user-circle" aria-hidden="true"></i>
-                  <span> {{ event.title }}</span>
+                  <span> {{ event.title }} {{ event.meta.id }}</span>
                 </div>
               </small>
         </ng-container>
@@ -20,30 +25,44 @@
       <ng-template #thenBlock>
       <div class="col-md-3">
         <div class="card border-secondary mb-3">
-          <div class="card-body">
-            <div class="alert alert-info text-center">
-              <strong *ngIf="clickedDate"> {{ clickedDate | date:'fullDate' }}</strong>
-            </div>
+          <div class="alert alert-info text-center">
+            <strong *ngIf="clickedDate"> {{ clickedDate | date:'fullDate' }}</strong>
+          </div>
+          <div class="" style="height: 450px; overflow-y: scroll">
               <ul id="list-edit">
                 <ng-container *ngFor="let event of events; let i = index">
-                  <li class="list-group-item-edit" *ngIf="event.start.getDate() == clickedDate.getDate()">
+                  <li class="list-group-item-edit form-control" *ngIf="event.start.getDate() == clickedDate.getDate()">
                     <small>
-                      <span class="badge rounded-circle">25</span>
-                      <span class="col-sm-4">{{ event.title }}</span>
-                      <input
-                        class="form-control col-sm-6"
-                        [(ngModel)]="event.start"
-                        [owlDateTimeTrigger]="dt4"
-                        [owlDateTime]="dt4">
-                      <owl-date-time [pickerType]="'timer'" #dt4 (afterPickerClosed)="onRefresh()"></owl-date-time>
-                      <input
-                        class="form-control col-sm-6"
-                        [(ngModel)]="event.end"
-                        [owlDateTimeTrigger]="dt3"
-                        [owlDateTime]="dt3">
-                      <owl-date-time [pickerType]="'timer'" #dt3 (afterPickerClosed)="onRefresh()"></owl-date-time>
+                      <div>
+                        <span class="badge rounded-circle">25</span>
+                        <span class="col-sm-4">{{ event.title }}</span>
+                        <button
+                          class="btn btn-danger btn-sm pull-right"
+                          mwlConfirmationPopover
+                          [popoverTitle]="popoverTitle"
+                          [popoverMessage]="popoverMessage"
+                          placement="right"
+                          (confirm)="confirmClicked = true; onDeleteEvent(i)"
+                          (cancel)="cancelClicked = true">
+                          X
+                        </button>
+                      </div>
+                      <div>
+                        <input
+                          id="startTime"
+                          class="form-control-sm col-sm-6"
+                          [(ngModel)]="event.start"
+                          [owlDateTimeTrigger]="dt4"
+                          [owlDateTime]="dt4">
+                        <owl-date-time [pickerType]="'timer'" #dt4 (afterPickerClosed)="onRefresh()"></owl-date-time>
+                        <input
+                          class="form-control-sm col-sm-6"
+                          [(ngModel)]="event.end"
+                          [owlDateTimeTrigger]="dt3"
+                          [owlDateTime]="dt3">
+                        <owl-date-time [pickerType]="'timer'" #dt3 (afterPickerClosed)="onRefresh()"></owl-date-time>
+                      </div>
                     </small>
-                    <button class="btn btn-danger" (click)="onDeleteEvent(i)">X</button>
                   </li>
                 </ng-container>
               </ul>
@@ -91,7 +110,7 @@
                 *ngSwitchCase="'day'"
                 [viewDate]="viewDate"
                 [events]="events"
-                [dayStartHour]="6"
+                [dayStartHour]="8"
                 [dayEndHour]="22"
                 (eventTimesChanged)="onEventTimesChanged($event)">
               </mwl-calendar-day-view>
@@ -100,7 +119,13 @@
           </div>
         </div>
 
-      <app-create-event *ngIf="view === 'week' || view === 'day'"></app-create-event>
+      <div class="col-md-9">
+        <div class="card border-secondary mb-3">
+          <div class="">
+            <app-create-event></app-create-event>
+          </div>
+        </div>
+      </div>
     </div>
 
 
