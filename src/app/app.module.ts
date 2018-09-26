@@ -12,7 +12,7 @@ import {CalendarModule} from 'angular-calendar';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import 'flatpickr/dist/flatpickr.css';
-import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap/modal/modal.module';
+import {NgbActiveModal, NgbModalModule} from '@ng-bootstrap/ng-bootstrap/modal/modal.module';
 import { FlatpickrModule } from 'angularx-flatpickr';
 import {ScheduleEventsService} from './shared/services/schedule-events.service';
 import { CreateEventComponent } from './full-calendar/create-event/create-event.component';
@@ -22,11 +22,14 @@ import { AddStaffComponent } from './register/add-staff/add-staff.component';
 import {LoginService} from './shared/services/login.service';
 import {EmployeesService} from './shared/services/employees.service';
 import { ScheduleHeaderComponent } from './full-calendar/schedule-header/schedule-header.component';
-import {NgbAccordion, NgbAccordionModule} from '@ng-bootstrap/ng-bootstrap';
+import {NgbAccordion, NgbAccordionModule, NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {SidebarModule} from 'ng-sidebar';
 import { NavBarSideComponent } from './nav-bar-side/nav-bar-side.component';
 import {ContextMenuModule} from 'ngx-contextmenu';
 import {ConfirmationPopoverModule} from 'angular-confirmation-popover';
+import { ModalComponent } from './modal/modal.component';
+import { AboutComponent } from './about/about.component';
+import { ModalAboutComponent } from './modal-about/modal-about.component';
 
 
 @NgModule({
@@ -42,6 +45,9 @@ import {ConfirmationPopoverModule} from 'angular-confirmation-popover';
     AddStaffComponent,
     ScheduleHeaderComponent,
     NavBarSideComponent,
+    ModalComponent,
+    AboutComponent,
+    ModalAboutComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,6 +58,7 @@ import {ConfirmationPopoverModule} from 'angular-confirmation-popover';
     BrowserAnimationsModule,
     CalendarModule.forRoot(),
     NgbModalModule.forRoot(),
+    NgbModule.forRoot(),
     FlatpickrModule.forRoot(),
     NgbAccordionModule,
     SidebarModule.forRoot(),
@@ -60,7 +67,10 @@ import {ConfirmationPopoverModule} from 'angular-confirmation-popover';
     }),
     ConfirmationPopoverModule.forRoot()
   ],
-  providers: [ScheduleEventsService, LoginService, EmployeesService],
-  bootstrap: [AppComponent]
+  providers: [ScheduleEventsService, LoginService, EmployeesService, NgbActiveModal],
+  bootstrap: [AppComponent],
+  entryComponents: [
+    ModalAboutComponent
+  ]
 })
 export class AppModule { }

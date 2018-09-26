@@ -1,3 +1,8 @@
-<p>
-  user-profile-dashboard works!
-</p>
+<div [ngSwitch]="loggedIn" class="app-content">
+  <div class="col-md-12" >
+    <app-login *ngSwitchCase="false"></app-login>
+  </div>
+  <div class="col-md-12">
+    <app-full-calendar *ngSwitchCase="true"></app-full-calendar>
+  </div>
+</div>

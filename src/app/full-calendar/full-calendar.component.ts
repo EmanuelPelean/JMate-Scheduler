@@ -12,6 +12,7 @@ import {ScheduleEventsService} from '../shared/services/schedule-events.service'
 import index from '@angular/cli/lib/cli';
 import {EmployeesService} from '../shared/services/employees.service';
 import {EmployeeModel} from '../shared/models/employee.model';
+import {ModalAboutComponent} from '../modal-about/modal-about.component';
 
 @Component({
   selector: 'app-full-calendar',
@@ -77,6 +78,12 @@ export class FullCalendarComponent implements OnInit, OnDestroy {
 
   onEventModal(event: CalendarEvent): void {
     alert(event.title);
+  }
+
+  open() {
+    // const modalRef = this.modalService.open(ModalComponent);
+    const modalRef = this.modal.open(ModalAboutComponent);
+    modalRef.componentInstance.title = 'About';
   }
 
 

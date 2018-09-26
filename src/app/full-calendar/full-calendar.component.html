@@ -1,7 +1,7 @@
 
-<context-menu #basicMenu >
+<context-menu #basicMenu>
   <ng-template contextMenuItem>
-      Add Alert
+    <span (click)="open()">Add Alert</span>
   </ng-template>
 </context-menu>
 
@@ -21,14 +21,16 @@
     </ng-template>
 
     <div class="row">
-      <div *ngIf="clickedDate; then thenBlock else elseBlock"></div>
+
+      <div *ngIf="view == 'month'; then thenBlock else elseBlock"></div>
+
       <ng-template #thenBlock>
       <div class="col-md-3">
         <div class="card border-secondary mb-3">
           <div class="alert alert-info text-center">
             <strong *ngIf="clickedDate"> {{ clickedDate | date:'fullDate' }}</strong>
           </div>
-          <div class="" style="height: 450px; overflow-y: scroll">
+          <div class="" style="height: 450px; overflow-y: scroll" id="style-1">
               <ul id="list-edit">
                 <ng-container *ngFor="let event of events; let i = index">
                   <li class="list-group-item-edit form-control" *ngIf="event.start.getDate() == clickedDate.getDate()">
@@ -77,7 +79,7 @@
             <div class="card-body">
               <ul>
                   <li>
-                    <h3>No date selected.</h3>
+                    <h3>No event selected.</h3>
                   </li>
               </ul>
             </div>

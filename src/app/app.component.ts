@@ -1,6 +1,8 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {LoginService} from './shared/services/login.service';
 import {Subscription} from 'rxjs';
+import {NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import {ModalAboutComponent} from './modal-about/modal-about.component';
 
 
 @Component({
@@ -16,7 +18,8 @@ export class AppComponent implements OnInit, OnDestroy {
   loggedIn = false;
   _opened = false;
 
-  constructor(private loginService: LoginService) {
+  constructor(private loginService: LoginService,
+              private modalService: NgbModal) {
   }
 
   ngOnInit() {
