@@ -1,8 +1,8 @@
 <div [ngSwitch]="loggedIn" class="app-content">
-  <div class="col-md-12" >
-    <app-login *ngSwitchCase="false"></app-login>
+  <div class="col-md-12" *ngSwitchCase="false" >
+    <app-login></app-login>
   </div>
-  <div class="col-md-12">
-    <app-full-calendar *ngSwitchCase="true"></app-full-calendar>
+  <div class="col-md-12" *ngSwitchCase="true">
+      <app-full-calendar></app-full-calendar>
   </div>
 </div>

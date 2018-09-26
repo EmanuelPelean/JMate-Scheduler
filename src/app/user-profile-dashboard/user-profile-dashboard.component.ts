@@ -13,6 +13,7 @@ export class UserProfileDashboardComponent implements OnInit, OnDestroy {
   subscription: Subscription;
   loggedIn = false;
   _opened = false;
+  selectedView = 'schedule';
 
 
   constructor(private loginService: LoginService,
