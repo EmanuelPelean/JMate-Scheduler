@@ -1,3 +1,15 @@
-<p>
-  employee-details works!
-</p>
+<div *ngIf="employee">
+  <div>
+    <label>Name: </label> {{employee.first_name}}
+  </div>
+  <div>
+    <label>Role </label> {{employee.role}}
+  </div>
+  <div>
+    <label>Active: </label> {{employee.active}}
+  </div>
+
+  <span class="button is-small btn-danger" >Delete</span>
+
+  <hr/>
+</div>
