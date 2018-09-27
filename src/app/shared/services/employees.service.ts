@@ -8,15 +8,17 @@ import {Subject} from 'rxjs';
 export class EmployeesService implements OnInit {
 
   private employees: EmployeeModel [] = [{
-    'firstName': 'Thomas',
-    'middleName': 'Mike',
-    'lastName': 'Smith',
-    'roles': ['MA', 'CM']
+    'id': 23,
+    'first_name': 'Thomas',
+    'last_name': 'Smith',
+    'role': 'MA',
+    'active': true
   }, {
-    'firstName': 'Sam',
-    'middleName': 'Henry',
-    'lastName': 'Slop',
-    'roles': ['FD']
+    'id': 29,
+    'first_name': 'Sam',
+    'last_name': 'Slop',
+    'role': 'FD',
+    'active': true
   }];
 
   employeesChanged = new Subject<EmployeeModel[]>();

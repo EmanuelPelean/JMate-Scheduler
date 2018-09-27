@@ -27,7 +27,7 @@ export class CreateEventComponent implements OnInit, OnDestroy {
   employeesSub: Subscription;
   employees: EmployeeModel[];
   selectedEmployee = 'select';
-  selectedEmployeeRoles: string[];
+  selectedEmployeeRole: string;
   selectedRole = 'select';
   newColor: {'primary': string, 'secondary': string};
   displayEmployeDD = false;
@@ -63,15 +63,15 @@ export class CreateEventComponent implements OnInit, OnDestroy {
 
 
   onSelectedRole(i: number) {
-    this.selectedRole = this.selectedEmployeeRoles[i];
+    this.selectedRole = this.selectedEmployeeRole[i];
     this.eventTitle = this.selectedEmployee + '(' + this.selectedRole + ')' ;
   }
 
   onSelectedEmployee(i: number) {
-    const firstName =  this.employees[i].firstName;
-    const lastName = this.employees[i].lastName;
+    const firstName =  this.employees[i].first_name;
+    const lastName = this.employees[i].last_name;
     this.selectedEmployee = firstName + ' ' + lastName;
-    this.selectedEmployeeRoles = this.employees[i].roles;
+    this.selectedEmployeeRole = this.employees[i].role;
 
   }
 

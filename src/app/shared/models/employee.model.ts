@@ -1,15 +1,9 @@
 export class EmployeeModel {
-  public firstName: string;
-  public middleName: string;
-  public lastName: string;
-  public roles: string[];
 
-  constructor(firstName: string, middleName: string, lastName: string, roles: string[]) {
-    this.firstName = firstName;
-    this.middleName = middleName;
-    this.lastName = lastName;
-    this.roles = roles;
-  }
-
+  id: number;
+  first_name: string;
+  last_name: string;
+  role: string;
+  active: boolean;
 
 }
