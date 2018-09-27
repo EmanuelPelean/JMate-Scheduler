@@ -34,6 +34,7 @@ import { EmployeesListComponent } from './employees/employees-list/employees-lis
 import {EmployeeService} from './shared/services/employee.service';
 import { EmployeeDetailsComponent } from './employees/employee-details/employee-details.component';
 import { CreateEmployeeComponent } from './employees/create-employee/create-employee.component';
+import { SearchEmployeesComponent } from './employees/search-employees/search-employees.component';
 
 
 @NgModule({
@@ -55,6 +56,7 @@ import { CreateEmployeeComponent } from './employees/create-employee/create-empl
     EmployeesListComponent,
     EmployeeDetailsComponent,
     CreateEmployeeComponent,
+    SearchEmployeesComponent,
   ],
   imports: [
     BrowserModule,
