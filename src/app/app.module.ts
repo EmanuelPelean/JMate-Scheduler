@@ -35,6 +35,8 @@ import {EmployeeService} from './shared/services/employee.service';
 import { EmployeeDetailsComponent } from './employees/employee-details/employee-details.component';
 import { CreateEmployeeComponent } from './employees/create-employee/create-employee.component';
 import { SearchEmployeesComponent } from './employees/search-employees/search-employees.component';
+import {HttpClientModule} from '@angular/common/http';
+import {AppRoutingModule} from './app-routing.module';
 
 
 @NgModule({
@@ -70,6 +72,8 @@ import { SearchEmployeesComponent } from './employees/search-employees/search-em
     NgbModule.forRoot(),
     FlatpickrModule.forRoot(),
     NgbAccordionModule,
+    AppRoutingModule,
+    HttpClientModule,
     SidebarModule.forRoot(),
     ContextMenuModule.forRoot({
       useBootstrap4: true,
