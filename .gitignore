@@ -38,6 +38,7 @@ testem.log
 mvnw
 mvnw.cmd
 .mvn/wrapper
+application.properties
 
 # System Files
 .DS_Store
