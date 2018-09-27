@@ -33,6 +33,7 @@ import { ModalAboutComponent } from './modal-about/modal-about.component';
 import { EmployeesListComponent } from './employees/employees-list/employees-list.component';
 import {EmployeeService} from './shared/services/employee.service';
 import { EmployeeDetailsComponent } from './employees/employee-details/employee-details.component';
+import { CreateEmployeeComponent } from './employees/create-employee/create-employee.component';
 
 
 @NgModule({
@@ -53,6 +54,7 @@ import { EmployeeDetailsComponent } from './employees/employee-details/employee-
     ModalAboutComponent,
     EmployeesListComponent,
     EmployeeDetailsComponent,
+    CreateEmployeeComponent,
   ],
   imports: [
     BrowserModule,
