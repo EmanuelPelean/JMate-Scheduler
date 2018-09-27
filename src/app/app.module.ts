@@ -30,6 +30,9 @@ import {ConfirmationPopoverModule} from 'angular-confirmation-popover';
 import { ModalComponent } from './modal/modal.component';
 import { AboutComponent } from './about/about.component';
 import { ModalAboutComponent } from './modal-about/modal-about.component';
+import { EmployeesListComponent } from './employees/employees-list/employees-list.component';
+import {EmployeeService} from './shared/services/employee.service';
+import { EmployeeDetailsComponent } from './employees/employee-details/employee-details.component';
 
 
 @NgModule({
@@ -48,6 +51,8 @@ import { ModalAboutComponent } from './modal-about/modal-about.component';
     ModalComponent,
     AboutComponent,
     ModalAboutComponent,
+    EmployeesListComponent,
+    EmployeeDetailsComponent,
   ],
   imports: [
     BrowserModule,
@@ -67,7 +72,7 @@ import { ModalAboutComponent } from './modal-about/modal-about.component';
     }),
     ConfirmationPopoverModule.forRoot()
   ],
-  providers: [ScheduleEventsService, LoginService, EmployeesService, NgbActiveModal],
+  providers: [ScheduleEventsService, LoginService, EmployeesService, NgbActiveModal, EmployeeService],
   bootstrap: [AppComponent],
   entryComponents: [
     ModalAboutComponent

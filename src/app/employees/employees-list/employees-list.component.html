@@ -1,0 +1,9 @@
+<h1>Employees</h1>
+
+<div *ngFor="let employee of employees | async" style="width: 300px;">
+  <app-employee-details [employee]='employee'></app-employee-details>
+</div>
+
+<div>
+  <button type="button" class="button btn-danger" (click)='deleteCustomers()'>Delete All</button>
+</div>
